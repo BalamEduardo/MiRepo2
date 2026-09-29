@@ -1,31 +1,31 @@
 {
   "expo": {
-    "name": "Ganancia Fácil",
-    "slug": "ganancia-facil",
+    "name": "DineroMio",
+    "slug": "dineromio",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/ganancia-facil-icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/dineromio-icon.png",
+    "userInterfaceStyle": "automatic",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/ganancia-facil-icon.png",
-        "backgroundColor": "#FFF8EC"
+        "foregroundImage": "./assets/dineromio-icon.png",
+        "backgroundColor": "#F5F4EE"
       }
     },
     "web": {
-      "favicon": "./assets/ganancia-facil-icon.png"
+      "favicon": "./assets/dineromio-icon.png"
     },
     "plugins": [
       [
         "expo-splash-screen",
         {
-          "image": "./assets/ganancia-facil-icon.png",
+          "image": "./assets/dineromio-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#FFF8EC"
+          "backgroundColor": "#F5F4EE"
         }
       ]
     ]

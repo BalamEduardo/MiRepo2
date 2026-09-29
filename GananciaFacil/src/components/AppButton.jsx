@@ -1,82 +1,74 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { colors } from '../theme';
+import AppIcon from './AppIcon';
+import { radii } from '../theme';
 
 export default function AppButton({
   title,
   onPress,
   icon,
   variant = 'primary',
+  disabled = false,
   accessibilityLabel,
+  palette,
+  style,
 }) {
+  const isPrimary = variant === 'primary';
+  const isDestructive = variant === 'destructive';
+  const color = isPrimary ? palette.onTint : (isDestructive ? palette.negative : palette.tint);
+  const backgroundColor = isPrimary
+    ? palette.tint
+    : (isDestructive ? palette.negativeSoft : 'transparent');
+  const borderColor = isPrimary || isDestructive ? 'transparent' : palette.separator;
+
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel || title}
+      accessibilityState={{ disabled }}
+      disabled={disabled}
       onPress={onPress}
       style={({ pressed }) => [
         styles.button,
-        styles[variant],
-        pressed && styles.pressed,
+        {
+          backgroundColor: disabled ? palette.surfaceMuted : backgroundColor,
+          borderColor,
+          opacity: pressed && !disabled ? 0.78 : 1,
+        },
+        style,
       ]}
     >
-      {icon ? (
-        <Ionicons
-          name={icon}
-          size={20}
-          color={variant === 'primary' || variant === 'danger' ? '#FFFFFF' : colors.greenDark}
-        />
-      ) : null}
-      <Text
-        style={[
-          styles.label,
-          variant === 'primary' || variant === 'danger'
-            ? styles.lightLabel
-            : styles.darkLabel,
-        ]}
-      >
-        {title}
-      </Text>
+      <View style={styles.content}>
+        {icon ? <AppIcon name={icon} color={disabled ? palette.secondary : color} size={19} /> : null}
+        <Text style={[styles.label, { color: disabled ? palette.secondary : color }]}>
+          {title}
+        </Text>
+      </View>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    minHeight: 52,
-    borderRadius: 16,
-    paddingHorizontal: 20,
-    paddingVertical: 14,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 9,
-  },
-  primary: {
-    backgroundColor: colors.green,
-  },
-  secondary: {
-    backgroundColor: colors.surface,
+    minHeight: 50,
+    paddingHorizontal: 18,
     borderWidth: 1,
-    borderColor: colors.green,
+    borderRadius: radii.control,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  danger: {
-    backgroundColor: colors.orangeDark,
-  },
-  pressed: {
-    opacity: 0.86,
-    transform: [{ scale: 0.96 }],
+  content: {
+    minHeight: 48,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 9,
   },
   label: {
     fontSize: 16,
+    lineHeight: 22,
     fontWeight: '700',
-  },
-  lightLabel: {
-    color: '#FFFFFF',
-  },
-  darkLabel: {
-    color: colors.greenDark,
+    textAlign: 'center',
   },
 });

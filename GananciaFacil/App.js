@@ -1,49 +1,125 @@
 import React from 'react';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { useColorScheme } from 'react-native';
+import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import AppIcon from './src/components/AppIcon';
+import CaptureScreen from './src/screens/CaptureScreen';
+import HistoryScreen from './src/screens/HistoryScreen';
 import HomeScreen from './src/screens/HomeScreen';
-import CalculatorScreen from './src/screens/CalculatorScreen';
-import ResultScreen from './src/screens/ResultScreen';
-import { colors } from './src/theme';
+import { SnapshotProvider } from './src/context/SnapshotContext';
+import { paletteFor } from './src/theme';
 
+const Tabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const navigationTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: colors.background,
-    card: colors.background,
-    text: colors.text,
-    border: colors.border,
-    primary: colors.green,
-  },
-};
+function MainTabs({ palette }) {
+  return (
+    <Tabs.Navigator
+      initialRouteName="Inicio"
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarActiveTintColor: palette.tint,
+        tabBarInactiveTintColor: palette.secondary,
+        tabBarStyle: {
+          minHeight: 62,
+          paddingTop: 6,
+          paddingBottom: 7,
+          backgroundColor: palette.surface,
+          borderTopColor: palette.separator,
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          lineHeight: 15,
+          fontWeight: '600',
+        },
+        tabBarIcon: ({ color, size }) => (
+          <AppIcon
+            name={route.name === 'Inicio' ? 'home' : 'history'}
+            color={color}
+            size={size}
+          />
+        ),
+        tabBarHideOnKeyboard: true,
+      })}
+    >
+      <Tabs.Screen
+        name="Inicio"
+        component={HomeScreen}
+        options={{ tabBarLabel: 'Inicio', tabBarAccessibilityLabel: 'Pestaña Inicio' }}
+      />
+      <Tabs.Screen
+        name="Historial"
+        component={HistoryScreen}
+        options={{ tabBarLabel: 'Historial', tabBarAccessibilityLabel: 'Pestaña Historial' }}
+      />
+    </Tabs.Navigator>
+  );
+}
 
-export default function App() {
+function AppNavigation() {
+  const scheme = useColorScheme();
+  const isDark = scheme === 'dark';
+  const palette = paletteFor(scheme);
+  const baseTheme = isDark ? DarkTheme : DefaultTheme;
+  const navigationTheme = {
+    ...baseTheme,
+    colors: {
+      ...baseTheme.colors,
+      background: palette.background,
+      card: palette.surface,
+      text: palette.text,
+      border: palette.separator,
+      primary: palette.tint,
+      notification: palette.dateMark,
+    },
+  };
+
   return (
     <NavigationContainer theme={navigationTheme}>
-      <StatusBar style="dark" backgroundColor={colors.background} />
+      <StatusBar style="auto" />
       <Stack.Navigator
-        initialRouteName="Inicio"
+        initialRouteName="Pestanas"
         screenOptions={{
-          headerStyle: { backgroundColor: colors.background },
-          headerTintColor: colors.greenDark,
-          headerTitleStyle: { fontWeight: '700' },
+          contentStyle: { backgroundColor: palette.background },
+          headerTintColor: palette.tint,
+          headerBackTitle: 'Atrás',
           headerShadowVisible: false,
-          contentStyle: { backgroundColor: colors.background },
+          gestureEnabled: true,
         }}
       >
         <Stack.Screen
-          name="Inicio"
-          component={HomeScreen}
+          name="Pestanas"
           options={{ headerShown: false }}
+        >
+          {() => <MainTabs palette={palette} />}
+        </Stack.Screen>
+        <Stack.Screen
+          name="Corte"
+          component={CaptureScreen}
+          options={({ route }) => ({
+            title: route.params?.snapshotId ? 'Editar corte' : 'Nuevo corte',
+            headerShown: false,
+            presentation: 'formSheet',
+            sheetAllowedDetents: [0.88, 1],
+            sheetInitialDetentIndex: 0,
+            sheetGrabberVisible: true,
+          })}
         />
-        <Stack.Screen name="Calculadora" component={CalculatorScreen} />
-        <Stack.Screen name="Resultado" component={ResultScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+  );
+}
+
+export default function App() {
+  return (
+    <SafeAreaProvider>
+      <SnapshotProvider>
+        <AppNavigation />
+      </SnapshotProvider>
+    </SafeAreaProvider>
   );
 }

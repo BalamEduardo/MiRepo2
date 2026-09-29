@@ -1,8 +1,10 @@
-# Ganancia Fácil
+# DineroMio
 
-- Proyecto Expo SDK 57 con JavaScript y React Navigation.
-- Mantener exactamente tres pantallas: Inicio, Calculadora y Resultado.
-- Conservar el alcance escolar: sin backend, persistencia, cuentas ni historial.
-- Validar los importes antes de navegar y aceptar punto o coma decimal.
-- Mantener la interfaz en modo claro y la paleta crema, verde y naranja.
-- La verificación solicitada para este proyecto es manual; no agregar pruebas automatizadas.
+- Expo SDK 57 project using JavaScript and React Navigation, targeting Expo Go on iPhone.
+- Product behavior and privacy constraints are recorded in `PRODUCT.md`.
+- Keep three main surfaces: Inicio, Corte, and Historial. Present capture/edit as a sheet; history details stay within Historial.
+- Store weekly cuts locally on the device. Do not add a backend, account login, cloud sync, live quotes, or imported financial history.
+- Track Santander, Nu, Openbank, GBM cash, VTI, VXUS, and BTC separately in MXN.
+- Validate every entered amount before saving; accept comma or period decimals and prevent unexpected closures.
+- Keep copy in Spanish and respect iOS safe areas, system navigation, and Reduce Motion.
+- Manual verification only; do not add automated tests.
