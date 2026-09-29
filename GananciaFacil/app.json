@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Ganancia Fácil",
+    "slug": "ganancia-facil",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/ganancia-facil-icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/ganancia-facil-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFF8EC"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/ganancia-facil-icon.png",
+        "backgroundColor": "#FFF8EC"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./assets/ganancia-facil-icon.png"
+    }
+  }
+}
