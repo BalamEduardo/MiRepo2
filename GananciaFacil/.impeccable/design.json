@@ -42,7 +42,7 @@
     },
     "typographyMeta": {
       "display": {
-        "displayName": "Total del corte",
+        "displayName": "Total estimado actual",
         "purpose": "Importe principal del resumen."
       },
       "headline": {

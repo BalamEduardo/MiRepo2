@@ -61,7 +61,8 @@ Campos, botones y notas usan radio de 14 puntos. Los botones de icono tienen un 
 
 - **Monto:** símbolo de pesos, campo decimal y sufijo MXN. Error visible junto al campo.
 - **Presupuesto:** interruptor Apartar para gastos, monto y reparto opcional. Súper, Comida, Cena, Gustos y Otros permanecen en orden fijo.
-- **Resumen:** destaca el total después de apartar y expresa debajo cuánto quedaría por encima o debajo del total registrado en el corte anterior. Un párrafo resume dinero en cuentas, apartado y restante. El reparto se abre con “Ver reparto” y muestra solo categorías con monto, en dos columnas, junto a lo que falta asignar.
+- **Resumen:** destaca Total estimado actual con la nota Según los gastos anotados. Gastado y Presupuesto restante se muestran juntos; el exceso tiene texto explícito. Ver presupuesto revela la proyección, la comparación contra el total original anterior y el reparto planeado.
+- **Gastos:** hoja nativa con lista y formulario de monto, categoría y descripción opcional. El historial permite corregir o eliminar gastos dentro del periodo original.
 - **Acciones:** azul para confirmar; borde fino para acciones secundarias; confirmación nativa para descartar o eliminar.
 - **Estados:** guardado bloquea edición; salir con cambios pide confirmación; historial vacío, carga y error de almacenamiento tienen mensajes claros.
 - **Movimiento:** las barras se ajustan después de guardar un corte, respetando Reducir movimiento.
@@ -74,11 +75,11 @@ Campos, botones y notas usan radio de 14 puntos. Los botones de icono tienen un 
 - Mantener la app clara incluso con el sistema oscuro.
 - Diferenciar patrimonio total y dinero en cuentas.
 - Conservar el presupuesto junto con su corte.
-- Etiquetar la variación como cambio de balance y los gastos como un plan.
+- Distinguir presupuesto planeado, gastos reales y total estimado.
 
 ### Don't:
 
 - Restar el presupuesto de los saldos registrados.
 - Incluir VTI, VXUS o BTC en la base del presupuesto.
 - Obligar a repartir todo el monto por categorías.
-- Añadir movimientos, cotizaciones, backend o nuevas dependencias.
+- Añadir ingresos, transferencias, cotizaciones, backend o nuevas dependencias.

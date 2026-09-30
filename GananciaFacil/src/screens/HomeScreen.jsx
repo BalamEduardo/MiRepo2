@@ -175,6 +175,24 @@ export default function HomeScreen({ navigation }) {
               <DateLine date={formatLongDate(latest.createdAt)} palette={palette} />
             </View>
 
+            <BudgetSummary snapshot={latest} previous={previous} palette={palette} showCategories
+              onAdjustBudget={() => navigation.navigate('Corte', { snapshotId: latest.id, initialSection: 'budget' })} />
+            <AppButton
+              title="Registrar gasto"
+              icon="plus"
+              palette={palette}
+              onPress={() => navigation.navigate('Gastos', { snapshotId: latest.id, mode: 'new' })}
+              style={{ marginTop: 14 }}
+            />
+            <AppButton
+              title="Ver gastos"
+              icon="history"
+              variant="secondary"
+              palette={palette}
+              onPress={() => navigation.navigate('Gastos', { snapshotId: latest.id, mode: 'list' })}
+              style={{ marginTop: 14 }}
+            />
+
             <View style={[styles.totalBlock, { borderTopColor: palette.separator, borderBottomColor: palette.separator }]}>
               <Text style={[styles.totalLabel, { color: palette.secondary }]}>Total del corte</Text>
               <Text
@@ -220,16 +238,6 @@ export default function HomeScreen({ navigation }) {
                 )}
               </View>
             </View>
-
-            <BudgetSummary snapshot={latest} previous={previous} palette={palette} showCategories />
-            <AppButton
-              title="Ajustar presupuesto"
-              icon="edit"
-              variant="secondary"
-              palette={palette}
-              onPress={() => navigation.navigate('Corte', { snapshotId: latest.id, initialSection: 'budget' })}
-              style={{ marginTop: 14 }}
-            />
 
             <View style={styles.distributionHeader}>
               <Text style={[styles.sectionTitle, { color: palette.text }]}>Dónde está tu dinero</Text>
@@ -356,6 +364,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   totalBlock: {
+    marginTop: 24,
     paddingVertical: 19,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -367,8 +376,8 @@ const styles = StyleSheet.create({
   },
   totalValue: {
     marginTop: 5,
-    fontSize: 34,
-    lineHeight: 42,
+    fontSize: 24,
+    lineHeight: 31,
     fontWeight: '700',
     fontVariant: ['tabular-nums'],
     letterSpacing: -0.6,

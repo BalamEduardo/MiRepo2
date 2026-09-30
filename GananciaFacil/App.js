@@ -10,6 +10,7 @@ import AppIcon from './src/components/AppIcon';
 import CaptureScreen from './src/screens/CaptureScreen';
 import HistoryScreen from './src/screens/HistoryScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import ExpensesScreen from './src/screens/ExpensesScreen';
 import { SnapshotProvider } from './src/context/SnapshotContext';
 import { palette } from './src/theme';
 
@@ -106,6 +107,10 @@ function AppNavigation() {
             sheetGrabberVisible: true,
           })}
         />
+        <Stack.Screen name="Gastos" component={ExpensesScreen} options={{
+          headerShown: false, presentation: 'formSheet', sheetAllowedDetents: [0.88, 1],
+          sheetInitialDetentIndex: 0, sheetGrabberVisible: true,
+        }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

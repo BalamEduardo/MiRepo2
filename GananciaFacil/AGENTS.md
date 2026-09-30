@@ -10,3 +10,4 @@
 - Manual verification only; do not add automated tests.
 
 - Budgets are optional and saved with each cut. Only banks and GBM cash form the budget base; category allocations cannot exceed the reserved amount.
+- A supporting expense sheet records, edits and deletes local expenses per cut. Expenses affect estimates only; a new cut starts an empty expense period.

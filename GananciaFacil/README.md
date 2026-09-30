@@ -29,8 +29,24 @@ Los valores anteriores se precargan al registrar el siguiente corte. La variaci�
 
 Debajo de los saldos, activa **Apartar para gastos** y captura el monto. La base suma únicamente Santander, Nu, Openbank y GBM sin invertir. **Repartir por categorías** es opcional: Súper, Comida, Cena, Gustos y Otros. Puedes dejar parte sin asignar y los campos vacíos de categorías valen cero.
 
-Inicio muestra dinero en cuentas, apartado para gastos, restante en cuentas y total después de apartar. Este último incluye todas las inversiones y resta el presupuesto previsto del patrimonio del corte. **Ajustar presupuesto** abre Corte en ese apartado. Cada corte conserva su presupuesto en Historial. El siguiente corte copia el anterior. Los registros antiguos comienzan sin presupuesto.
+Inicio destaca **Total estimado actual**, con **Gastado** y **Presupuesto restante**. **Ver presupuesto** muestra la proyección, el reparto planeado y su comparación con el total original del corte anterior. **Ajustar presupuesto** abre Corte en ese apartado. El presupuesto y los saldos se copian al crear el siguiente corte; los registros antiguos sin presupuesto siguen interpretándose como sin presupuesto.
 
-El presupuesto es un plan: no descuenta saldos ni registra compras. La app siempre utiliza apariencia clara, incluso si el iPhone está en modo oscuro.
+## Gastos reales
 
-El resumen de gastos destaca el total después de apartar y su diferencia prevista respecto al total original del corte anterior. Por ejemplo: corte anterior de $10,000, corte actual de $12,000 y presupuesto de $1,000 muestran $11,000 después de apartar y $1,000 más que antes. El dinero en cuentas se explica en un párrafo; las categorías se consultan al pulsar **Ver reparto**.
+**Registrar gasto** abre un formulario con monto positivo en MXN, categoría y descripción opcional (hasta 160 caracteres). La fecha y hora son automáticas. **Ver gastos** permite editar y eliminar, con confirmación. Historial ofrece las mismas correcciones para cada periodo. Todos los importes aceptan punto o coma y hasta dos decimales; el formulario se conserva si falla el guardado.
+
+Cada corte conserva sus siete saldos originales y una lista independiente de gastos. Los cortes antiguos sin lista comienzan con una vacía. Eliminar un corte también elimina sus gastos.
+
+- Total estimado actual = total original del corte − gastos anotados.
+- Presupuesto restante = máximo entre presupuesto − gastos y cero.
+- Total previsto = total estimado actual − presupuesto restante.
+
+Ejemplo: corte de $10,000, presupuesto de $2,000 y comida de $300 muestran $9,700 estimados, $1,700 pendientes y $8,000 previstos. Si gastas $2,300, verás $300 de exceso, $0 pendientes y $7,700 estimados/previstos. Sin presupuesto, los gastos reducen únicamente la estimación.
+
+El nuevo corte empieza sin gastos y requiere actualizar los saldos reales, que ya incluyen los gastos anteriores. Un nuevo saldo de $9,700 queda en $9,700 hasta anotar gastos nuevos: los $300 del periodo anterior no se descuentan otra vez. Corregir gastos antiguos no cambia los cortes posteriores.
+
+No se selecciona cuenta de pago ni se registran ingresos, transferencias o cambios de inversiones posteriores al corte. La estimación refleja solo lo anotado. La app conserva su apariencia clara incluso con el iPhone en modo oscuro.
+
+## Comprobación
+
+La comprobación visual y de uso en Expo Go corresponde al usuario: registrar, editar y eliminar gastos; cerrar y reabrir para comprobar persistencia; guardar un nuevo corte con saldos reales; y revisar los errores de captura y la apariencia clara. No se incluye una suite de pruebas automatizadas.

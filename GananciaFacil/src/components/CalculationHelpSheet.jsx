@@ -63,6 +63,16 @@ export default function CalculationHelpSheet({ visible, onClose, palette }) {
             palette={palette}
           />
           <Rule
+            title="Gastos reales y estimación"
+            description="El total estimado resta los gastos anotados al total original del corte. El presupuesto restante es lo planeado menos lo gastado, con mínimo cero. El total previsto resta solo ese restante a la estimación: cada gasto se descuenta una sola vez. No incluye ingresos, transferencias ni cambios posteriores de inversiones."
+            palette={palette}
+          />
+          <Rule
+            title="Un periodo por corte"
+            description="Al registrar un nuevo corte, actualiza tus saldos reales: ya incluyen los gastos anteriores. La nueva lista de gastos empieza vacía; los anteriores permanecen en Historial."
+            palette={palette}
+          />
+          <Rule
             title="Variación"
             description="Resta el total del corte anterior al total actual. Los depósitos o retiros también pueden mover esta cifra."
             palette={palette}

@@ -24,7 +24,7 @@ import { HOLDING_GROUPS } from '../data/holdings';
 import { useSnapshots } from '../context/SnapshotContext';
 import { palette, spacing } from '../theme';
 
-function SnapshotEntry({ snapshot, previous, expanded, onToggle, onEdit, onDelete, palette, isFirst }) {
+function SnapshotEntry({ snapshot, previous, expanded, onToggle, onEdit, onDelete, onExpenses, palette, isFirst }) {
   const total = totalCentsFor(snapshot.values);
   const previousTotal = previous ? totalCentsFor(previous.values) : 0;
   const variation = previous ? total - previousTotal : null;
@@ -82,7 +82,8 @@ function SnapshotEntry({ snapshot, previous, expanded, onToggle, onEdit, onDelet
               palette={palette}
             />
           ))}
-          <BudgetSummary snapshot={snapshot} previous={previous} palette={palette} showCategories />
+          <BudgetSummary snapshot={snapshot} previous={previous} palette={palette} showCategories historical />
+          <AppButton title="Ver gastos" icon="history" variant="secondary" palette={palette} onPress={onExpenses} style={{ marginTop: 12 }} />
           <View style={styles.actions}>
             <AppButton
               title="Editar"
@@ -119,7 +120,7 @@ export default function HistoryScreen({ navigation }) {
 
     Alert.alert(
       '¿Eliminar este corte?',
-      `Se borrarán los saldos y el presupuesto del corte del ${dateLabel}. Esta acción no se puede deshacer.`,
+      `Se borrarán los saldos, el presupuesto y todos los gastos del corte del ${dateLabel}. Esta acción no se puede deshacer.`,
       [
         { text: 'Cancelar', style: 'cancel' },
         {
@@ -170,7 +171,7 @@ export default function HistoryScreen({ navigation }) {
           <View>
             <Text style={[styles.title, { color: palette.text }]}>Historial de cortes</Text>
             <Text style={[styles.subtitle, { color: palette.secondary }]}>
-              Cada fecha conserva sus saldos y su presupuesto.
+              Cada fecha conserva sus saldos, presupuesto y gastos.
             </Text>
           </View>
         )}
@@ -199,6 +200,7 @@ export default function HistoryScreen({ navigation }) {
               current === snapshot.id ? '' : snapshot.id
             ))}
             onEdit={() => openEdit(snapshot.id)}
+            onExpenses={() => navigation.navigate('Gastos', { snapshotId: snapshot.id, mode: 'list' })}
             onDelete={() => askToDelete(snapshot)}
             palette={palette}
             isFirst={index === 0}

@@ -258,7 +258,7 @@ export default function CaptureScreen({ navigation, route }) {
                 {isEditing
                   ? `Corte del ${dateLabel.toLowerCase()}. La fecha se conserva.`
                   : (sourceSnapshot
-                    ? 'Usamos tu corte anterior. Cambia solo los valores que necesites.'
+                    ? 'Actualiza los saldos reales: ya deben incluir tus gastos anteriores. Este corte inicia un periodo de gastos vacío.'
                     : 'Este será el primer registro de tu historial.')}
               </Text>
             </View>

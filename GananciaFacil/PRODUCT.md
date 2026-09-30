@@ -12,7 +12,7 @@ A single person recording the current peso value of their personal accounts and 
 
 ## Product Purpose
 
-DineroMio keeps a private weekly snapshot of personal assets, calculates their combined value and distribution, shows how the total changed since the previous snapshot, and optionally reserves bank cash for weekly expenses. Success means the user can update the seven values quickly and understand the current total without maintaining a transaction ledger.
+DineroMio keeps a private weekly snapshot of personal assets, calculates their combined value and distribution, and optionally reserves bank cash for weekly expenses. A simple local expense register estimates the current total without changing recorded balances.
 
 ## Positioning
 
@@ -32,7 +32,10 @@ The user creates a weekly cut on their iPhone, entering current MXN values gathe
 - Use a fixed light appearance.
 - Keep a local history of cuts that can be viewed, edited, and deleted.
 - Accept decimal input with a period or comma, and validate every value before saving.
-- Store cuts only on the device. Do not add user accounts, a backend, cloud sync, live quotes, transactions, or Excel history migration.
+- Store cuts and expenses only on the device. Do not add user accounts, a backend, cloud sync, live quotes, income or transfers, or Excel history migration.
+- Expenses have a positive amount in cents, one fixed category, an optional description and an automatic timestamp. Allow corrections and confirmed deletion within their original period.
+- Each new cut copies balances and budget but starts with no expenses. Prompt the user to update actual balances including prior spending.
+- Current estimate = recorded total minus expenses. Remaining budget = max(budget minus expenses, zero). Projected total = current estimate minus remaining budget. Overspending is allowed.
 - Begin with an empty history; do not seed the app with the user's actual balances.
 
 ## Brand Commitments

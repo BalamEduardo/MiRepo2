@@ -4,6 +4,7 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -11,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { HOLDINGS } from '../data/holdings';
 import { MAX_AMOUNT_CENTS, sortedNewestFirst } from '../data/amounts';
 import { cashCentsFor, validateStoredBudget } from '../data/budget';
+import { validateStoredExpenses } from '../data/expenses';
 
 const STORAGE_KEY = '@dineromio/cortes-v1';
 const SnapshotContext = createContext(null);
@@ -50,6 +52,7 @@ function validateStoredSnapshots(value) {
       updatedAt: typeof snapshot.updatedAt === 'string' ? snapshot.updatedAt : snapshot.createdAt,
       values,
       budget: validateStoredBudget(snapshot.budget, cashCentsFor(values)),
+      expenses: validateStoredExpenses(snapshot.expenses),
     };
   });
 }
@@ -62,6 +65,17 @@ export function SnapshotProvider({ children }) {
   const [snapshots, setSnapshots] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [storageError, setStorageError] = useState('');
+  const writeLock = useRef(false);
+  const commit = useCallback(async (next) => {
+    if (writeLock.current) throw new Error('Hay un guardado en curso. Intenta de nuevo.');
+    writeLock.current = true;
+    try {
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      setSnapshots(next);
+    } finally {
+      writeLock.current = false;
+    }
+  }, []);
 
   const reload = useCallback(async () => {
     setIsLoading(true);
@@ -102,17 +116,16 @@ export function SnapshotProvider({ children }) {
 
     const nextSnapshot = current
       ? { ...current, values, budget: validBudget, updatedAt: now }
-      : { id: createSnapshotId(), createdAt: now, updatedAt: now, values, budget: validBudget };
+      : { id: createSnapshotId(), createdAt: now, updatedAt: now, values, budget: validBudget, expenses: [] };
     const nextSnapshots = sortedNewestFirst([
       nextSnapshot,
       ...snapshots.filter((snapshot) => snapshot.id !== nextSnapshot.id),
     ]);
 
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(nextSnapshots));
-    setSnapshots(nextSnapshots);
+    await commit(nextSnapshots);
 
     return nextSnapshot;
-  }, [isLoading, snapshots, storageError]);
+  }, [commit, isLoading, snapshots, storageError]);
 
   const deleteSnapshot = useCallback(async (snapshotId) => {
     if (isLoading || storageError) {
@@ -125,9 +138,29 @@ export function SnapshotProvider({ children }) {
       return;
     }
 
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(nextSnapshots));
-    setSnapshots(nextSnapshots);
-  }, [isLoading, snapshots, storageError]);
+    await commit(nextSnapshots);
+  }, [commit, isLoading, snapshots, storageError]);
+
+  const saveExpense = useCallback(async (snapshotId, expense) => {
+    if (isLoading || storageError) throw new Error('Espera a que el historial esté listo.');
+    const current = snapshots.find((item) => item.id === snapshotId);
+    if (!current) throw new Error('No encontramos ese corte.');
+    const existing = expense.id ? current.expenses.find((item) => item.id === expense.id) : null;
+    if (expense.id && !existing) throw new Error('No encontramos ese gasto.');
+    if (!existing && snapshots[0]?.id !== snapshotId) throw new Error('Solo puedes añadir gastos al corte activo.');
+    const saved = { ...expense, id: existing?.id ?? createSnapshotId(),
+      createdAt: existing?.createdAt ?? new Date().toISOString() };
+    const expenses = validateStoredExpenses([saved, ...current.expenses.filter((item) => item.id !== saved.id)]);
+    await commit(snapshots.map((item) => item.id === snapshotId ? { ...item, expenses } : item));
+  }, [commit, isLoading, snapshots, storageError]);
+
+  const deleteExpense = useCallback(async (snapshotId, expenseId) => {
+    if (isLoading || storageError) throw new Error('Espera a que el historial esté listo.');
+    const current = snapshots.find((item) => item.id === snapshotId);
+    if (!current) throw new Error('No encontramos ese corte.');
+    await commit(snapshots.map((item) => item.id === snapshotId
+      ? { ...item, expenses: item.expenses.filter((expense) => expense.id !== expenseId) } : item));
+  }, [commit, isLoading, snapshots, storageError]);
 
   const value = useMemo(() => ({
     snapshots,
@@ -136,7 +169,9 @@ export function SnapshotProvider({ children }) {
     reload,
     saveSnapshot,
     deleteSnapshot,
-  }), [deleteSnapshot, isLoading, reload, saveSnapshot, snapshots, storageError]);
+    saveExpense,
+    deleteExpense,
+  }), [deleteExpense, saveExpense, deleteSnapshot, isLoading, reload, saveSnapshot, snapshots, storageError]);
 
   return (
     <SnapshotContext.Provider value={value}>
