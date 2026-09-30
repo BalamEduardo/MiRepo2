@@ -1,15 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { allocatedCentsFor, cashCentsFor, CATEGORIES } from '../data/budget';
-import { formatMoney } from '../data/amounts';
+import { formatMoney, totalCentsFor } from '../data/amounts';
 
 export default function BudgetSummary({ snapshot, palette, showCategories = false }) {
   const cash = cashCentsFor(snapshot.values);
   const budget = snapshot.budget;
+  const reserved = budget?.amountCents ?? 0;
   const rows = [
     ['Dinero en cuentas', cash],
-    ['Apartado para gastos', budget?.amountCents ?? 0],
-    ['Sin apartar', cash - (budget?.amountCents ?? 0)],
+    ['Apartado para gastos', reserved],
+    ['Restante en cuentas', cash - reserved],
+    ['Total después de apartar', totalCentsFor(snapshot.values) - reserved],
   ];
   return (
     <View style={styles.section}>
@@ -20,6 +22,9 @@ export default function BudgetSummary({ snapshot, palette, showCategories = fals
           <Text style={[styles.amount, { color: palette.text }]}>{formatMoney(amount)}</Text>
         </View>
       ))}
+      <Text style={[styles.note, { color: palette.secondary }]}>
+        El total incluye inversiones y descuenta lo previsto para gastos.
+      </Text>
       {!budget ? <Text style={[styles.note, { color: palette.secondary }]}>Sin presupuesto definido</Text> : null}
       {showCategories && budget?.categories ? (
         <View style={[styles.categories, { borderTopColor: palette.separator }]}>

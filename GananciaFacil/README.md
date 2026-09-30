@@ -29,6 +29,6 @@ Los valores anteriores se precargan al registrar el siguiente corte. La variaci�
 
 Debajo de los saldos, activa **Apartar para gastos** y captura el monto. La base suma únicamente Santander, Nu, Openbank y GBM sin invertir. **Repartir por categorías** es opcional: Súper, Comida, Cena, Gustos y Otros. Puedes dejar parte sin asignar y los campos vacíos de categorías valen cero.
 
-Inicio muestra dinero en cuentas, apartado y sin apartar; **Ajustar presupuesto** abre Corte en ese apartado. Cada corte conserva su presupuesto en Historial. El siguiente corte copia el anterior. Los registros antiguos comienzan sin presupuesto.
+Inicio muestra dinero en cuentas, apartado para gastos, restante en cuentas y total después de apartar. Este último incluye todas las inversiones y resta el presupuesto previsto del patrimonio del corte. **Ajustar presupuesto** abre Corte en ese apartado. Cada corte conserva su presupuesto en Historial. El siguiente corte copia el anterior. Los registros antiguos comienzan sin presupuesto.
 
 El presupuesto es un plan: no descuenta saldos ni registra compras. La app siempre utiliza apariencia clara, incluso si el iPhone está en modo oscuro.
