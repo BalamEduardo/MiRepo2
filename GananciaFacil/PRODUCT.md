@@ -12,7 +12,7 @@ A single person recording the current peso value of their personal accounts and 
 
 ## Product Purpose
 
-DineroMio keeps a private weekly snapshot of personal assets, calculates their combined value and distribution, and shows how the total changed since the previous snapshot. Success means the user can update the seven values quickly and understand the current total without maintaining a transaction ledger.
+DineroMio keeps a private weekly snapshot of personal assets, calculates their combined value and distribution, shows how the total changed since the previous snapshot, and optionally reserves bank cash for weekly expenses. Success means the user can update the seven values quickly and understand the current total without maintaining a transaction ledger.
 
 ## Positioning
 
@@ -27,6 +27,9 @@ The user creates a weekly cut on their iPhone, entering current MXN values gathe
 - Track Santander, Nu, Openbank, uninvested GBM cash, VTI, VXUS, and BTC as separate values in MXN.
 - Calculate the total, each item's share of the total, and the difference from the preceding cut.
 - Label the difference as a balance variation, not investment return, since deposits and withdrawals can change it.
+- Reserve an optional weekly MXN budget from Santander, Nu, Openbank and uninvested GBM cash only. Optionally allocate it to Súper, Comida, Cena, Gustos and Otros.
+- Copy the previous budget into each new cut. A budget expresses spending intent without reducing recorded balances.
+- Use a fixed light appearance.
 - Keep a local history of cuts that can be viewed, edited, and deleted.
 - Accept decimal input with a period or comma, and validate every value before saving.
 - Store cuts only on the device. Do not add user accounts, a backend, cloud sync, live quotes, transactions, or Excel history migration.

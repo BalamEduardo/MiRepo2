@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { HOLDINGS } from '../data/holdings';
 import { MAX_AMOUNT_CENTS, sortedNewestFirst } from '../data/amounts';
+import { cashCentsFor, validateStoredBudget } from '../data/budget';
 
 const STORAGE_KEY = '@dineromio/cortes-v1';
 const SnapshotContext = createContext(null);
@@ -48,6 +49,7 @@ function validateStoredSnapshots(value) {
       createdAt: snapshot.createdAt,
       updatedAt: typeof snapshot.updatedAt === 'string' ? snapshot.updatedAt : snapshot.createdAt,
       values,
+      budget: validateStoredBudget(snapshot.budget, cashCentsFor(values)),
     };
   });
 }
@@ -80,12 +82,18 @@ export function SnapshotProvider({ children }) {
     reload();
   }, [reload]);
 
-  const saveSnapshot = useCallback(async ({ id, values }) => {
+  const saveSnapshot = useCallback(async ({ id, values, budget = null }) => {
     if (isLoading || storageError) {
       throw new Error('Espera a que el historial esté listo antes de guardar.');
     }
 
     const now = new Date().toISOString();
+    for (const { key } of HOLDINGS) {
+      if (!Number.isSafeInteger(values[key]) || values[key] < 0 || values[key] > MAX_AMOUNT_CENTS) {
+        throw new Error('Revisa los saldos antes de guardar el corte.');
+      }
+    }
+    const validBudget = validateStoredBudget(budget, cashCentsFor(values));
     const current = id ? snapshots.find((snapshot) => snapshot.id === id) : null;
 
     if (id && !current) {
@@ -93,8 +101,8 @@ export function SnapshotProvider({ children }) {
     }
 
     const nextSnapshot = current
-      ? { ...current, values, updatedAt: now }
-      : { id: createSnapshotId(), createdAt: now, updatedAt: now, values };
+      ? { ...current, values, budget: validBudget, updatedAt: now }
+      : { id: createSnapshotId(), createdAt: now, updatedAt: now, values, budget: validBudget };
     const nextSnapshots = sortedNewestFirst([
       nextSnapshot,
       ...snapshots.filter((snapshot) => snapshot.id !== nextSnapshot.id),

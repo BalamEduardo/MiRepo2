@@ -5,14 +5,14 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/dineromio-icon.png",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/dineromio-icon.png",
-        "backgroundColor": "#F5F4EE"
+        "backgroundColor": "#F5F5F7"
       }
     },
     "web": {
@@ -25,7 +25,7 @@
           "image": "./assets/dineromio-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#F5F4EE"
+          "backgroundColor": "#F5F5F7"
         }
       ]
     ]

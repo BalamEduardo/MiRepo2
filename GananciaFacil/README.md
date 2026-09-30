@@ -24,3 +24,11 @@ Los cortes se guardan localmente en el espacio de la app mediante AsyncStorage. 
 - Posiciones VTI, VXUS y BTC, cada una por separado.
 
 Los valores anteriores se precargan al registrar el siguiente corte. La variación es el cambio entre totales y no representa rendimiento de inversión.
+
+## Presupuesto semanal
+
+Debajo de los saldos, activa **Apartar para gastos** y captura el monto. La base suma únicamente Santander, Nu, Openbank y GBM sin invertir. **Repartir por categorías** es opcional: Súper, Comida, Cena, Gustos y Otros. Puedes dejar parte sin asignar y los campos vacíos de categorías valen cero.
+
+Inicio muestra dinero en cuentas, apartado y sin apartar; **Ajustar presupuesto** abre Corte en ese apartado. Cada corte conserva su presupuesto en Historial. El siguiente corte copia el anterior. Los registros antiguos comienzan sin presupuesto.
+
+El presupuesto es un plan: no descuenta saldos ni registra compras. La app siempre utiliza apariencia clara, incluso si el iPhone está en modo oscuro.

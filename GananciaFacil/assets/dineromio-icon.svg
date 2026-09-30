@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-  <rect width="1024" height="1024" fill="#3848C8"/>
-  <rect x="213" y="176" width="598" height="672" rx="78" fill="#F5F4EE"/>
-  <path d="M213 254a78 78 0 0 1 78-78h442a78 78 0 0 1 78 78v105H213z" fill="#B94732"/>
-  <rect x="350" y="129" width="54" height="152" rx="27" fill="#F5F4EE"/>
-  <rect x="620" y="129" width="54" height="152" rx="27" fill="#F5F4EE"/>
-  <circle cx="339" cy="450" r="25" fill="#B94732"/>
+  <rect width="1024" height="1024" fill="#0066CC"/>
+  <rect x="213" y="176" width="598" height="672" rx="78" fill="#F5F5F7"/>
+  <path d="M213 254a78 78 0 0 1 78-78h442a78 78 0 0 1 78 78v105H213z" fill="#0066CC"/>
+  <rect x="350" y="129" width="54" height="152" rx="27" fill="#F5F5F7"/>
+  <rect x="620" y="129" width="54" height="152" rx="27" fill="#F5F5F7"/>
+  <circle cx="339" cy="450" r="25" fill="#0066CC"/>
   <rect x="393" y="429" width="272" height="42" rx="21" fill="#202548"/>
-  <circle cx="339" cy="566" r="25" fill="#3848C8"/>
-  <rect x="393" y="545" width="220" height="42" rx="21" fill="#D9DCE5"/>
-  <circle cx="339" cy="682" r="25" fill="#3848C8"/>
-  <rect x="393" y="661" width="308" height="42" rx="21" fill="#D9DCE5"/>
+  <circle cx="339" cy="566" r="25" fill="#0066CC"/>
+  <rect x="393" y="545" width="220" height="42" rx="21" fill="#E0E0E0"/>
+  <circle cx="339" cy="682" r="25" fill="#0066CC"/>
+  <rect x="393" y="661" width="308" height="42" rx="21" fill="#E0E0E0"/>
 </svg>

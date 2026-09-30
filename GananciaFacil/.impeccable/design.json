@@ -1,61 +1,70 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-29T04:58:20Z",
+  "generatedAt": "2026-09-30T04:13:38.647Z",
   "title": "Design System: DineroMio",
   "extensions": {
     "colorMeta": {
       "tint": {
         "role": "primary",
-        "displayName": "Índigo de registro",
-        "canonical": "#3848C8",
-        "tonalRamp": ["#111749", "#1D2675", "#27329C", "#313DAF", "#3848C8", "#6774E0", "#A0A9F3", "#E9EBFF"]
+        "displayName": "Azul de acción",
+        "canonical": "#0066CC"
       },
       "background": {
         "role": "neutral",
-        "displayName": "Papel cálido",
-        "canonical": "#F5F4EE",
-        "tonalRamp": ["#171715", "#33332F", "#4F4F49", "#6C6C63", "#88887D", "#A5A498", "#C1C0B2", "#F5F4EE"]
+        "displayName": "Gris de fondo",
+        "canonical": "#F5F5F7"
       },
       "surface": {
         "role": "neutral",
         "displayName": "Superficie blanca",
-        "canonical": "#FFFFFF",
-        "tonalRamp": ["#191A1C", "#353639", "#515255", "#6D6E72", "#898A8E", "#A6A7AA", "#C2C3C6", "#FFFFFF"]
+        "canonical": "#FFFFFF"
       },
       "text": {
         "role": "neutral",
         "displayName": "Tinta",
-        "canonical": "#181B27",
-        "tonalRamp": ["#10121A", "#181B27", "#292C38", "#3F424D", "#595B65", "#767881", "#A1A2A9", "#F3F4F7"]
+        "canonical": "#1D1D1F"
       },
       "date-mark": {
         "role": "secondary",
-        "displayName": "Ladrillo de fecha",
-        "canonical": "#B94732",
-        "tonalRamp": ["#51241B", "#7A3028", "#9C3D30", "#B94732", "#CE705E", "#E28F7D", "#F1B9A8", "#F8EAE5"]
+        "displayName": "Azul de fecha",
+        "canonical": "#0066CC"
       },
       "positive": {
         "role": "semantic-positive",
         "displayName": "Verde de aumento",
-        "canonical": "#176D4A",
-        "tonalRamp": ["#102A21", "#174A36", "#176D4A", "#27865F", "#55A880", "#83C2A0", "#B7DEC8", "#E6F3EC"]
+        "canonical": "#176D4A"
       },
       "negative": {
         "role": "semantic-negative",
         "displayName": "Rojo de disminución",
-        "canonical": "#AE352E",
-        "tonalRamp": ["#401D1B", "#6E2825", "#922F2A", "#AE352E", "#C6534A", "#DA8178", "#EAB4AE", "#F9E9E7"]
+        "canonical": "#AE352E"
       }
     },
     "typographyMeta": {
-      "display": { "displayName": "Total del corte", "purpose": "Importe principal del resumen." },
-      "headline": { "displayName": "Encabezado", "purpose": "Títulos de Inicio e Historial." },
-      "body": { "displayName": "Texto de interfaz", "purpose": "Instrucciones, etiquetas y controles." },
-      "label": { "displayName": "Etiqueta secundaria", "purpose": "Fechas, subtítulos y porcentajes." }
+      "display": {
+        "displayName": "Total del corte",
+        "purpose": "Importe principal del resumen."
+      },
+      "headline": {
+        "displayName": "Encabezado",
+        "purpose": "Títulos de Inicio e Historial."
+      },
+      "body": {
+        "displayName": "Texto de interfaz",
+        "purpose": "Instrucciones, etiquetas y controles."
+      },
+      "label": {
+        "displayName": "Etiqueta secundaria",
+        "purpose": "Fechas, subtítulos y porcentajes."
+      }
     },
     "shadows": [],
     "motion": [
-      { "name": "distribution-entry", "value": "480ms ease-out; 0ms when Reduce Motion is enabled", "purpose": "Acomoda las barras una vez después de actualizar el corte." }
+      {
+        "name": "distribution-entry",
+        "value": "480ms ease-out; 0ms when Reduce Motion is enabled",
+        "purpose": "Acomoda las barras una vez después de actualizar el corte."
+      }
     ],
     "breakpoints": []
   },
@@ -66,7 +75,7 @@
       "refersTo": "button-primary",
       "description": "Acción primaria de registro o confirmación.",
       "html": "<button class=\"ds-button-primary\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"m4 10 4 4 8-8\"/></svg>Registrar corte semanal</button>",
-      "css": ".ds-button-primary { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 50px; padding: 0 18px; border: 1px solid transparent; border-radius: 14px; background: #3848C8; color: #FFFFFF; font: 700 16px/22px -apple-system, BlinkMacSystemFont, sans-serif; cursor: pointer; transition: opacity 160ms ease, transform 160ms ease; } .ds-button-primary:hover { opacity: .9; } .ds-button-primary:focus-visible { outline: 3px solid #A0A9F3; outline-offset: 2px; } .ds-button-primary:active { transform: scale(.98); opacity: .82; } .ds-button-primary:disabled { background: #ECEEF4; color: #5E6472; cursor: not-allowed; } .ds-button-primary svg { width: 19px; height: 19px; } .ds-button-primary svg path { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }"
+      "css": ".ds-button-primary { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 50px; padding: 0 18px; border: 1px solid transparent; border-radius: 14px; background: #0066CC; color: #FFFFFF; font: 700 16px/22px -apple-system, BlinkMacSystemFont, sans-serif; cursor: pointer; transition: opacity 160ms ease, transform 160ms ease; } .ds-button-primary:hover { opacity: .9; } .ds-button-primary:focus-visible { outline: 3px solid #A0A9F3; outline-offset: 2px; } .ds-button-primary:active { transform: scale(.98); opacity: .82; } .ds-button-primary:disabled { background: #ECEEF4; color: #5E6472; cursor: not-allowed; } .ds-button-primary svg { width: 19px; height: 19px; } .ds-button-primary svg path { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }"
     },
     {
       "name": "Amount Field",
@@ -74,21 +83,21 @@
       "refersTo": "amount-field",
       "description": "Captura manual de un saldo en pesos mexicanos.",
       "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Santander</span><span class=\"ds-input-row\"><span>$</span><input aria-label=\"Saldo de Santander en pesos mexicanos\" placeholder=\"0.00\" /><span class=\"ds-currency\">MXN</span></span></label>",
-      "css": ".ds-field { display: grid; gap: 7px; color: #181B27; font: 600 16px/22px -apple-system, BlinkMacSystemFont, sans-serif; } .ds-input-row { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 14px; border: 1px solid #D9DCE5; border-radius: 14px; background: #FFFFFF; font-variant-numeric: tabular-nums; } .ds-input-row:focus-within { border-color: #3848C8; } .ds-input-row input { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; color: #181B27; font: 400 17px/23px -apple-system, BlinkMacSystemFont, sans-serif; font-variant-numeric: tabular-nums; } .ds-currency { color: #5E6472; font: 600 13px/18px -apple-system, BlinkMacSystemFont, sans-serif; } .ds-input-row:has(input[aria-invalid=\"true\"]) { border-color: #AE352E; }"
+      "css": ".ds-field { display: grid; gap: 7px; color: #1D1D1F; font: 600 16px/22px -apple-system, BlinkMacSystemFont, sans-serif; } .ds-input-row { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 14px; border: 1px solid #E0E0E0; border-radius: 14px; background: #FFFFFF; font-variant-numeric: tabular-nums; } .ds-input-row:focus-within { border-color: #0066CC; } .ds-input-row input { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; color: #1D1D1F; font: 400 17px/23px -apple-system, BlinkMacSystemFont, sans-serif; font-variant-numeric: tabular-nums; } .ds-currency { color: #5E6472; font: 600 13px/18px -apple-system, BlinkMacSystemFont, sans-serif; } .ds-input-row:has(input[aria-invalid=\"true\"]) { border-color: #AE352E; }"
     },
     {
       "name": "Total Summary",
       "kind": "custom",
       "description": "Presenta total, fecha y aclaración de la variación.",
       "html": "<section class=\"ds-total\"><span class=\"ds-total-date\">Fecha del corte</span><span class=\"ds-total-label\">Total del corte</span><strong class=\"ds-total-value\">Tu total</strong><span class=\"ds-total-note\">Variación respecto al corte anterior</span></section>",
-      "css": ".ds-total { display: grid; gap: 8px; padding: 20px 0; border-top: 1px solid #D9DCE5; border-bottom: 1px solid #D9DCE5; color: #181B27; font-family: -apple-system, BlinkMacSystemFont, sans-serif; } .ds-total-date { color: #5E6472; font-size: 14px; line-height: 20px; } .ds-total-label { margin-top: 10px; color: #5E6472; font-size: 15px; line-height: 21px; } .ds-total-value { font-size: 34px; line-height: 42px; font-weight: 700; letter-spacing: -.4px; font-variant-numeric: tabular-nums; } .ds-total-note { color: #176D4A; font-size: 13px; line-height: 19px; }"
+      "css": ".ds-total { display: grid; gap: 8px; padding: 20px 0; border-top: 1px solid #E0E0E0; border-bottom: 1px solid #E0E0E0; color: #1D1D1F; font-family: -apple-system, BlinkMacSystemFont, sans-serif; } .ds-total-date { color: #5E6472; font-size: 14px; line-height: 20px; } .ds-total-label { margin-top: 10px; color: #5E6472; font-size: 15px; line-height: 21px; } .ds-total-value { font-size: 34px; line-height: 42px; font-weight: 700; letter-spacing: -.4px; font-variant-numeric: tabular-nums; } .ds-total-note { color: #176D4A; font-size: 13px; line-height: 19px; }"
     },
     {
       "name": "Weekly Balance Row",
       "kind": "custom",
       "description": "Una posición con monto, participación y barra etiquetada.",
       "html": "<div class=\"ds-balance\"><div class=\"ds-balance-main\"><span class=\"ds-balance-name\">VTI</span><span class=\"ds-balance-amount\">Monto del saldo</span></div><div class=\"ds-balance-share\"><span>Porción del total</span></div><div class=\"ds-balance-track\"><span></span></div></div>",
-      "css": ".ds-balance { display: grid; gap: 7px; padding: 10px 0; border-bottom: 1px solid #D9DCE5; color: #181B27; font-family: -apple-system, BlinkMacSystemFont, sans-serif; } .ds-balance-main { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; } .ds-balance-name, .ds-balance-amount { font-size: 15px; line-height: 21px; font-weight: 600; } .ds-balance-amount { font-variant-numeric: tabular-nums; } .ds-balance-share { color: #5E6472; font-size: 12px; line-height: 16px; } .ds-balance-track { height: 3px; overflow: hidden; border-radius: 2px; background: #E0E3EA; } .ds-balance-track span { display: block; width: 0; height: 100%; border-radius: inherit; background: #3848C8; }"
+      "css": ".ds-balance { display: grid; gap: 7px; padding: 10px 0; border-bottom: 1px solid #E0E0E0; color: #1D1D1F; font-family: -apple-system, BlinkMacSystemFont, sans-serif; } .ds-balance-main { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; } .ds-balance-name, .ds-balance-amount { font-size: 15px; line-height: 21px; font-weight: 600; } .ds-balance-amount { font-variant-numeric: tabular-nums; } .ds-balance-share { color: #5E6472; font-size: 12px; line-height: 16px; } .ds-balance-track { height: 3px; overflow: hidden; border-radius: 2px; background: #E0E3EA; } .ds-balance-track span { display: block; width: 0; height: 100%; border-radius: inherit; background: #0066CC; }"
     },
     {
       "name": "Bottom Navigation",
@@ -96,7 +105,7 @@
       "refersTo": "tab-bar",
       "description": "Dos destinos principales para la app personal.",
       "html": "<nav class=\"ds-tab-bar\" aria-label=\"Navegación principal\"><button class=\"ds-tab ds-tab-active\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m3 10 9-7 9 7v10h-6v-6H9v6H3z\"/></svg>Inicio</button><button class=\"ds-tab\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 12a8 8 0 1 0 2.3-5.7L4 8.5M4 4v4.5h4.5\"/></svg>Historial</button></nav>",
-      "css": ".ds-tab-bar { display: flex; align-items: center; justify-content: space-around; min-height: 62px; border-top: 1px solid #D9DCE5; background: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, sans-serif; } .ds-tab { display: grid; place-items: center; gap: 2px; min-width: 88px; min-height: 52px; border: 0; background: transparent; color: #5E6472; font-size: 11px; line-height: 15px; font-weight: 600; cursor: pointer; } .ds-tab svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; } .ds-tab-active { color: #3848C8; } .ds-tab:focus-visible { outline: 2px solid #3848C8; outline-offset: -2px; border-radius: 10px; } .ds-tab:active { opacity: .68; }"
+      "css": ".ds-tab-bar { display: flex; align-items: center; justify-content: space-around; min-height: 62px; border-top: 1px solid #E0E0E0; background: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, sans-serif; } .ds-tab { display: grid; place-items: center; gap: 2px; min-width: 88px; min-height: 52px; border: 0; background: transparent; color: #5E6472; font-size: 11px; line-height: 15px; font-weight: 600; cursor: pointer; } .ds-tab svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; } .ds-tab-active { color: #0066CC; } .ds-tab:focus-visible { outline: 2px solid #0066CC; outline-offset: -2px; border-radius: 10px; } .ds-tab:active { opacity: .68; }"
     }
   ],
   "narrative": {
@@ -105,19 +114,28 @@
     "keyCharacteristics": [
       "Total y variación antes del desglose.",
       "Siete posiciones en un orden estable entre Inicio, Corte e Historial.",
-      "Diseño claro y oscuro que sigue la apariencia del sistema.",
+      "Apariencia clara fija, incluso con el sistema oscuro.",
       "Ilustración local de primera semana sin saldos ficticios.",
-      "Animación breve de distribución que respeta Reducir movimiento."
+      "Animación breve de distribución que respeta Reducir movimiento.",
+      "Presupuesto opcional del dinero en cuentas, con cinco categorías opcionales."
     ],
     "rules": [
-      { "name": "The Sign-and-Label Rule", "body": "La variación siempre se acompaña de signo y texto; el color por sí solo nunca define si el balance subió o bajó.", "section": "colors" },
-      { "name": "The Numeric Alignment Rule", "body": "Los montos y porcentajes conservan cifras tabulares y alineación a la derecha.", "section": "typography" }
+      {
+        "name": "The Sign-and-Label Rule",
+        "body": "La variación siempre se acompaña de signo y texto; el color por sí solo nunca define si el balance subió o bajó.",
+        "section": "colors"
+      },
+      {
+        "name": "The Numeric Alignment Rule",
+        "body": "Los montos y porcentajes conservan cifras tabulares y alineación a la derecha.",
+        "section": "typography"
+      }
     ],
     "dos": [
       "Mostrar el total y la variación antes de las siete posiciones.",
       "Conservar nombres y orden de las posiciones en las vistas.",
       "Acompañar cada variación con texto y signo.",
-      "Mantener el tema claro y oscuro en controles, texto y separadores."
+      "Mantener la apariencia clara en todas las superficies."
     ],
     "donts": [
       "Presentar depósitos o retiros como rendimiento de inversión.",

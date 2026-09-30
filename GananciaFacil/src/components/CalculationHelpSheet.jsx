@@ -58,6 +58,11 @@ export default function CalculationHelpSheet({ visible, onClose, palette }) {
             palette={palette}
           />
           <Rule
+            title="Presupuesto semanal"
+            description="Aparta un monto del dinero en Santander, Nu, Openbank y GBM sin invertir. Puedes repartirlo entre cinco categorías. Es un plan: los saldos reales se actualizan en tu próximo corte."
+            palette={palette}
+          />
+          <Rule
             title="Variación"
             description="Resta el total del corte anterior al total actual. Los depósitos o retiros también pueden mover esta cifra."
             palette={palette}

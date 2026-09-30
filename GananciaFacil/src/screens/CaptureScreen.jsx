@@ -11,23 +11,28 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useColorScheme } from 'react-native';
 import { usePreventRemove } from '@react-navigation/native';
 
 import AmountInput from '../components/AmountInput';
+import BudgetFields from '../components/BudgetFields';
+import { budgetDraftFor, cashCentsFor, validateBudgetDraft } from '../data/budget';
 import AppButton from '../components/AppButton';
 import AppIcon from '../components/AppIcon';
 import { LoadingState, StorageErrorState } from '../components/ScreenStates';
 import { formatCentsForInput, formatLongDate, getAmountError, parseAmountToCents } from '../data/amounts';
 import { emptyValues, HOLDINGS, HOLDING_GROUPS } from '../data/holdings';
 import { useSnapshots } from '../context/SnapshotContext';
-import { paletteFor, spacing } from '../theme';
+import { palette, spacing } from '../theme';
 
 export default function CaptureScreen({ navigation, route }) {
-  const scheme = useColorScheme();
-  const palette = paletteFor(scheme);
   const { snapshots, isLoading, storageError, reload, saveSnapshot } = useSnapshots();
   const [values, setValues] = useState(emptyValues);
+  const [budgetDraft, setBudgetDraft] = useState(() => budgetDraftFor(null));
+  const [budgetErrors, setBudgetErrors] = useState({});
+  const originalBudget = useRef(null);
+  const scrollRef = useRef(null);
+  const budgetPosition = useRef(0);
+  const hasScrolled = useRef(false);
   const [errors, setErrors] = useState({});
   const [isReady, setIsReady] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -58,6 +63,10 @@ export default function CaptureScreen({ navigation, route }) {
       : emptyValues();
 
     originalValues.current = nextValues;
+    const nextBudget = budgetDraftFor(latestSource?.budget);
+    originalBudget.current = nextBudget;
+    setBudgetDraft(nextBudget);
+    setBudgetErrors({});
     setValues(nextValues);
     setErrors({});
     setSaveError('');
@@ -66,7 +75,8 @@ export default function CaptureScreen({ navigation, route }) {
 
   const isDirty = isReady
     && originalValues.current !== null
-    && HOLDINGS.some(({ key }) => values[key] !== originalValues.current[key]);
+    && (HOLDINGS.some(({ key }) => values[key] !== originalValues.current[key])
+      || JSON.stringify(budgetDraft) !== JSON.stringify(originalBudget.current));
 
   usePreventRemove(isDirty || isSaving, ({ data }) => {
     if (hasSaved.current) {
@@ -81,7 +91,7 @@ export default function CaptureScreen({ navigation, route }) {
 
     Alert.alert(
       '¿Descartar tus cambios?',
-      'Los saldos que editaste todavía no se han guardado.',
+      'Los cambios en saldos o presupuesto todavía no se han guardado.',
       [
         { text: 'Seguir editando', style: 'cancel' },
         {
@@ -96,6 +106,7 @@ export default function CaptureScreen({ navigation, route }) {
   const changeValue = (key, nextValue) => {
     setValues((current) => ({ ...current, [key]: nextValue }));
     setErrors((current) => ({ ...current, [key]: '' }));
+    setBudgetErrors({});
     setSaveError('');
   };
 
@@ -125,12 +136,24 @@ export default function CaptureScreen({ navigation, route }) {
       return;
     }
 
+    const checkedBudget = validateBudgetDraft(budgetDraft, cashCentsFor(nextCents));
+    setBudgetErrors(checkedBudget.errors);
+    const firstBudgetError = Object.keys(checkedBudget.errors)[0];
+    if (firstBudgetError) {
+      scrollRef.current?.scrollTo({ y: budgetPosition.current, animated: false });
+      requestAnimationFrame(() => {
+        inputRefs.current[firstBudgetError === 'distribution' ? 'budgetAmount' : firstBudgetError]?.focus();
+        AccessibilityInfo.announceForAccessibility(checkedBudget.errors[firstBudgetError]);
+      });
+      return;
+    }
+
     saveLock.current = true;
     setIsSaving(true);
     setSaveError('');
 
     try {
-      await saveSnapshot({ id: snapshotId, values: nextCents });
+      await saveSnapshot({ id: snapshotId, values: nextCents, budget: checkedBudget.budget });
       hasSaved.current = true;
       navigation.goBack();
     } catch (error) {
@@ -212,6 +235,13 @@ export default function CaptureScreen({ navigation, route }) {
         </View>
 
         <ScrollView
+          ref={scrollRef}
+          onContentSizeChange={() => {
+            if (route.params?.initialSection === 'budget' && !hasScrolled.current && budgetPosition.current > 0) {
+              hasScrolled.current = true;
+              scrollRef.current?.scrollTo({ y: budgetPosition.current, animated: false });
+            }
+          }}
           contentContainerStyle={styles.content}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
@@ -251,6 +281,26 @@ export default function CaptureScreen({ navigation, route }) {
               ))}
             </View>
           ))}
+
+          <View onLayout={(event) => {
+            budgetPosition.current = event.nativeEvent.layout.y;
+            if (route.params?.initialSection === 'budget' && !hasScrolled.current) {
+              hasScrolled.current = true;
+              requestAnimationFrame(() => scrollRef.current?.scrollTo({ y: budgetPosition.current, animated: false }));
+            }
+          }}>
+            <BudgetFields
+              draft={budgetDraft}
+              onChange={(next) => { setBudgetDraft(next); setBudgetErrors({}); setSaveError(''); }}
+              cashCents={cashCentsFor(Object.fromEntries(HOLDINGS.map(({ key }) => [
+                key, getAmountError(values[key]) ? 0 : parseAmountToCents(values[key]),
+              ])))}
+              errors={budgetErrors}
+              editable={!isSaving}
+              inputRefs={inputRefs}
+              palette={palette}
+            />
+          </View>
 
           <View style={styles.formFooter}>
             <Text style={[styles.helper, { color: palette.secondary }]}>

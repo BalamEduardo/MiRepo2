@@ -8,9 +8,9 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useColorScheme } from 'react-native';
 
 import AppButton from '../components/AppButton';
+import BudgetSummary from '../components/BudgetSummary';
 import AppIcon from '../components/AppIcon';
 import HoldingsGroup from '../components/HoldingsGroup';
 import { LoadingState, StorageErrorState } from '../components/ScreenStates';
@@ -22,7 +22,7 @@ import {
 } from '../data/amounts';
 import { HOLDING_GROUPS } from '../data/holdings';
 import { useSnapshots } from '../context/SnapshotContext';
-import { paletteFor, spacing } from '../theme';
+import { palette, spacing } from '../theme';
 
 function SnapshotEntry({ snapshot, previous, expanded, onToggle, onEdit, onDelete, palette, isFirst }) {
   const total = totalCentsFor(snapshot.values);
@@ -82,6 +82,7 @@ function SnapshotEntry({ snapshot, previous, expanded, onToggle, onEdit, onDelet
               palette={palette}
             />
           ))}
+          <BudgetSummary snapshot={snapshot} palette={palette} showCategories />
           <View style={styles.actions}>
             <AppButton
               title="Editar"
@@ -109,8 +110,6 @@ function SnapshotEntry({ snapshot, previous, expanded, onToggle, onEdit, onDelet
 }
 
 export default function HistoryScreen({ navigation }) {
-  const scheme = useColorScheme();
-  const palette = paletteFor(scheme);
   const { snapshots, isLoading, storageError, reload, deleteSnapshot } = useSnapshots();
   const [expandedId, setExpandedId] = useState('');
   const previousById = React.useMemo(() => precedingSnapshotsById(snapshots), [snapshots]);
@@ -120,7 +119,7 @@ export default function HistoryScreen({ navigation }) {
 
     Alert.alert(
       '¿Eliminar este corte?',
-      `Se borrarán los siete saldos guardados el ${dateLabel}. Esta acción no se puede deshacer.`,
+      `Se borrarán los saldos y el presupuesto del corte del ${dateLabel}. Esta acción no se puede deshacer.`,
       [
         { text: 'Cancelar', style: 'cancel' },
         {
@@ -171,7 +170,7 @@ export default function HistoryScreen({ navigation }) {
           <View>
             <Text style={[styles.title, { color: palette.text }]}>Historial de cortes</Text>
             <Text style={[styles.subtitle, { color: palette.secondary }]}>
-              Cada fecha conserva los siete valores de ese día.
+              Cada fecha conserva sus saldos y su presupuesto.
             </Text>
           </View>
         )}

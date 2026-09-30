@@ -1,6 +1,6 @@
-import React from 'react';
-import { useColorScheme } from 'react-native';
-import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { Appearance } from 'react-native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
@@ -11,7 +11,7 @@ import CaptureScreen from './src/screens/CaptureScreen';
 import HistoryScreen from './src/screens/HistoryScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import { SnapshotProvider } from './src/context/SnapshotContext';
-import { paletteFor } from './src/theme';
+import { palette } from './src/theme';
 
 const Tabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -61,10 +61,7 @@ function MainTabs({ palette }) {
 }
 
 function AppNavigation() {
-  const scheme = useColorScheme();
-  const isDark = scheme === 'dark';
-  const palette = paletteFor(scheme);
-  const baseTheme = isDark ? DarkTheme : DefaultTheme;
+  const baseTheme = DefaultTheme;
   const navigationTheme = {
     ...baseTheme,
     colors: {
@@ -80,7 +77,7 @@ function AppNavigation() {
 
   return (
     <NavigationContainer theme={navigationTheme}>
-      <StatusBar style="auto" />
+      <StatusBar style="dark" />
       <Stack.Navigator
         initialRouteName="Pestanas"
         screenOptions={{
@@ -115,6 +112,10 @@ function AppNavigation() {
 }
 
 export default function App() {
+  useEffect(() => {
+    Appearance.setColorScheme('light');
+    return () => Appearance.setColorScheme('unspecified');
+  }, []);
   return (
     <SafeAreaProvider>
       <SnapshotProvider>

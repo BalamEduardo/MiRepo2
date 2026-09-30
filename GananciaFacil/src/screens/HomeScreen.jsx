@@ -11,10 +11,10 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useColorScheme } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 
 import AppButton from '../components/AppButton';
+import BudgetSummary from '../components/BudgetSummary';
 import AppIcon from '../components/AppIcon';
 import CalculationHelpSheet from '../components/CalculationHelpSheet';
 import HoldingsGroup from '../components/HoldingsGroup';
@@ -22,7 +22,7 @@ import { LoadingState, StorageErrorState } from '../components/ScreenStates';
 import { formatLongDate, formatMoney, formatShortDate, precedingSnapshot, totalCentsFor } from '../data/amounts';
 import { HOLDING_GROUPS } from '../data/holdings';
 import { useSnapshots } from '../context/SnapshotContext';
-import { paletteFor, spacing } from '../theme';
+import { palette, spacing } from '../theme';
 
 function DateLine({ date, palette }) {
   return (
@@ -36,8 +36,6 @@ function DateLine({ date, palette }) {
 }
 
 export default function HomeScreen({ navigation }) {
-  const scheme = useColorScheme();
-  const palette = paletteFor(scheme);
   const { snapshots, isLoading, storageError, reload } = useSnapshots();
   const [helpVisible, setHelpVisible] = useState(false);
   const barProgress = useRef(new Animated.Value(1)).current;
@@ -222,6 +220,16 @@ export default function HomeScreen({ navigation }) {
                 )}
               </View>
             </View>
+
+            <BudgetSummary snapshot={latest} palette={palette} showCategories />
+            <AppButton
+              title="Ajustar presupuesto"
+              icon="edit"
+              variant="secondary"
+              palette={palette}
+              onPress={() => navigation.navigate('Corte', { snapshotId: latest.id, initialSection: 'budget' })}
+              style={{ marginTop: 14 }}
+            />
 
             <View style={styles.distributionHeader}>
               <Text style={[styles.sectionTitle, { color: palette.text }]}>Dónde está tu dinero</Text>
