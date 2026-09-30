@@ -221,7 +221,7 @@ export default function HomeScreen({ navigation }) {
               </View>
             </View>
 
-            <BudgetSummary snapshot={latest} palette={palette} showCategories />
+            <BudgetSummary snapshot={latest} previous={previous} palette={palette} showCategories />
             <AppButton
               title="Ajustar presupuesto"
               icon="edit"

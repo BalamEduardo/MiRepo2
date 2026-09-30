@@ -32,3 +32,5 @@ Debajo de los saldos, activa **Apartar para gastos** y captura el monto. La base
 Inicio muestra dinero en cuentas, apartado para gastos, restante en cuentas y total después de apartar. Este último incluye todas las inversiones y resta el presupuesto previsto del patrimonio del corte. **Ajustar presupuesto** abre Corte en ese apartado. Cada corte conserva su presupuesto en Historial. El siguiente corte copia el anterior. Los registros antiguos comienzan sin presupuesto.
 
 El presupuesto es un plan: no descuenta saldos ni registra compras. La app siempre utiliza apariencia clara, incluso si el iPhone está en modo oscuro.
+
+El resumen de gastos destaca el total después de apartar y su diferencia prevista respecto al total original del corte anterior. Por ejemplo: corte anterior de $10,000, corte actual de $12,000 y presupuesto de $1,000 muestran $11,000 después de apartar y $1,000 más que antes. El dinero en cuentas se explica en un párrafo; las categorías se consultan al pulsar **Ver reparto**.

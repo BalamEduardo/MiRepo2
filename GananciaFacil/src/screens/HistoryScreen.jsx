@@ -82,7 +82,7 @@ function SnapshotEntry({ snapshot, previous, expanded, onToggle, onEdit, onDelet
               palette={palette}
             />
           ))}
-          <BudgetSummary snapshot={snapshot} palette={palette} showCategories />
+          <BudgetSummary snapshot={snapshot} previous={previous} palette={palette} showCategories />
           <View style={styles.actions}>
             <AppButton
               title="Editar"

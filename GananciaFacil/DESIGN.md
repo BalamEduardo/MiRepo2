@@ -61,7 +61,7 @@ Campos, botones y notas usan radio de 14 puntos. Los botones de icono tienen un 
 
 - **Monto:** símbolo de pesos, campo decimal y sufijo MXN. Error visible junto al campo.
 - **Presupuesto:** interruptor Apartar para gastos, monto y reparto opcional. Súper, Comida, Cena, Gustos y Otros permanecen en orden fijo.
-- **Resumen:** dinero en cuentas, apartado, restante en cuentas y patrimonio total después de apartar. El total incluye inversiones y descuenta el presupuesto previsto. El reparto muestra cuánto falta asignar.
+- **Resumen:** destaca el total después de apartar y expresa debajo cuánto quedaría por encima o debajo del total registrado en el corte anterior. Un párrafo resume dinero en cuentas, apartado y restante. El reparto se abre con “Ver reparto” y muestra solo categorías con monto, en dos columnas, junto a lo que falta asignar.
 - **Acciones:** azul para confirmar; borde fino para acciones secundarias; confirmación nativa para descartar o eliminar.
 - **Estados:** guardado bloquea edición; salir con cambios pide confirmación; historial vacío, carga y error de almacenamiento tienen mensajes claros.
 - **Movimiento:** las barras se ajustan después de guardar un corte, respetando Reducir movimiento.
