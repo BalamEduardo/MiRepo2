@@ -24,7 +24,7 @@ import { HOLDING_GROUPS } from '../data/holdings';
 import { useSnapshots } from '../context/SnapshotContext';
 import { palette, spacing } from '../theme';
 
-function SnapshotEntry({ snapshot, previous, expanded, onToggle, onEdit, onDelete, onExpenses, palette, isFirst }) {
+function SnapshotEntry({ snapshot, previous, expanded, onToggle, onEdit, onDelete, onExpenses, onDetail, palette, isFirst }) {
   const total = totalCentsFor(snapshot.values);
   const previousTotal = previous ? totalCentsFor(previous.values) : 0;
   const variation = previous ? total - previousTotal : null;
@@ -73,6 +73,13 @@ function SnapshotEntry({ snapshot, previous, expanded, onToggle, onEdit, onDelet
 
       {expanded ? (
         <View style={styles.details}>
+          <AppButton
+            title="Abrir detalle del corte"
+            icon="calendar"
+            variant="secondary"
+            palette={palette}
+            onPress={onDetail}
+          />
           {HOLDING_GROUPS.map((group) => (
             <HoldingsGroup
               key={group}
@@ -201,6 +208,7 @@ export default function HistoryScreen({ navigation }) {
             ))}
             onEdit={() => openEdit(snapshot.id)}
             onExpenses={() => navigation.navigate('Gastos', { snapshotId: snapshot.id, mode: 'list' })}
+            onDetail={() => navigation.navigate('DetalleCorte', { snapshotId: snapshot.id })}
             onDelete={() => askToDelete(snapshot)}
             palette={palette}
             isFirst={index === 0}

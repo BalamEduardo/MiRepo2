@@ -17,6 +17,7 @@ const SYMBOLS = {
   close: { ios: 'xmark', android: 'close', web: 'close' },
   help: { ios: 'questionmark.circle', android: 'help_outline', web: 'help_outline' },
   chevron: { ios: 'chevron.down', android: 'expand_more', web: 'expand_more' },
+  chevronRight: { ios: 'chevron.right', android: 'chevron_right', web: 'chevron_right' },
   arrowUp: { ios: 'arrow.up.right', android: 'north_east', web: 'north_east' },
   arrowDown: { ios: 'arrow.down.right', android: 'south_east', web: 'south_east' },
   equal: { ios: 'equal', android: 'drag_handle', web: 'drag_handle' },

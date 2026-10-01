@@ -1,5 +1,7 @@
 # DineroMio
 
+La navegación incluye cuatro pantallas completas: Inicio, Historial, Presupuesto y Detalle del corte. Corte y Gastos se abren como hojas; la ayuda de cálculo y la ayuda del presupuesto son modales propios.
+
 Aplicación personal para registrar una vez por semana siete saldos en pesos mexicanos, ver el total, su distribución y la variación frente al corte anterior.
 
 Construida con JavaScript, React Native y Expo SDK 57 para ejecutarse en Expo Go en iPhone.

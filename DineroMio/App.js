@@ -11,6 +11,8 @@ import CaptureScreen from './src/screens/CaptureScreen';
 import HistoryScreen from './src/screens/HistoryScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import ExpensesScreen from './src/screens/ExpensesScreen';
+import BudgetScreen from './src/screens/BudgetScreen';
+import SnapshotDetailScreen from './src/screens/SnapshotDetailScreen';
 import { SnapshotProvider } from './src/context/SnapshotContext';
 import { palette } from './src/theme';
 
@@ -111,6 +113,8 @@ function AppNavigation() {
           headerShown: false, presentation: 'formSheet', sheetAllowedDetents: [0.88, 1],
           sheetInitialDetentIndex: 0, sheetGrabberVisible: true,
         }} />
+        <Stack.Screen name="Presupuesto" component={BudgetScreen} options={{ title: 'Presupuesto' }} />
+        <Stack.Screen name="DetalleCorte" component={SnapshotDetailScreen} options={{ title: 'Detalle del corte' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

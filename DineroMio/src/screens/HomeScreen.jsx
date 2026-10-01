@@ -176,7 +176,7 @@ export default function HomeScreen({ navigation }) {
             </View>
 
             <BudgetSummary snapshot={latest} previous={previous} palette={palette} showCategories
-              onAdjustBudget={() => navigation.navigate('Corte', { snapshotId: latest.id, initialSection: 'budget' })} />
+              onViewBudget={() => navigation.navigate('Presupuesto')} />
             <AppButton
               title="Registrar gasto"
               icon="plus"

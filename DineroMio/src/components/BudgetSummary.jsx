@@ -6,8 +6,8 @@ import { allocatedCentsFor, cashCentsFor, CATEGORIES } from '../data/budget';
 import { formatMoney, formatShortDate, totalCentsFor } from '../data/amounts';
 import { expenseSummaryFor } from '../data/expenses';
 
-export default function BudgetSummary({ snapshot, previous = null, palette, showCategories = false, historical = false, onAdjustBudget }) {
-  const [expanded, setExpanded] = useState(false);
+export default function BudgetSummary({ snapshot, previous = null, palette, showCategories = false, historical = false, onAdjustBudget, onViewBudget, expandedInitially = false }) {
+  const [expanded, setExpanded] = useState(expandedInitially);
   const budget = snapshot.budget;
   const { spent, remaining, estimated, projected, overspent } = expenseSummaryFor(snapshot);
   const difference = previous ? projected - totalCentsFor(previous.values) : null;
@@ -22,9 +22,9 @@ export default function BudgetSummary({ snapshot, previous = null, palette, show
         <View style={styles.cell}><Text style={[styles.note, { color: palette.secondary }]}>Presupuesto restante</Text><Text style={[styles.amount, { color: palette.text }]}>{budget ? formatMoney(remaining) : 'Sin presupuesto'}</Text></View>
       </View>
       {overspent > 0 ? <Text style={[styles.note, { color: palette.negative }]}>Superaste tu presupuesto por {formatMoney(overspent)}.</Text> : null}
-      <Pressable accessibilityRole="button" accessibilityState={{ expanded }} onPress={() => setExpanded((value) => !value)} style={styles.disclosure}>
-        <Text style={[styles.link, { color: palette.tint }]}>{expanded ? 'Ocultar presupuesto' : 'Ver presupuesto'}</Text>
-        <AppIcon name="chevron" color={palette.tint} size={16} style={expanded ? { transform: [{ rotate: '180deg' }] } : undefined} />
+      <Pressable accessibilityRole="button" accessibilityState={onViewBudget ? {} : { expanded }} onPress={onViewBudget || (() => setExpanded((value) => !value))} style={styles.disclosure}>
+        <Text style={[styles.link, { color: palette.tint }]}>{onViewBudget ? 'Ver presupuesto' : (expanded ? 'Ocultar presupuesto' : 'Ver presupuesto')}</Text>
+        <AppIcon name={onViewBudget ? 'chevronRight' : 'chevron'} color={palette.tint} size={16} style={expanded && !onViewBudget ? { transform: [{ rotate: '180deg' }] } : undefined} />
       </Pressable>
       {expanded ? <View style={[styles.details, { borderColor: palette.separator }]}>
         <Text style={[styles.note, { color: palette.secondary }]}>Total original del corte: {formatMoney(totalCentsFor(snapshot.values))}</Text>

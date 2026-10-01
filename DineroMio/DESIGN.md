@@ -47,11 +47,11 @@ San Francisco en iPhone, con cifras tabulares en importes. El total usa el mayor
 
 ## Layout
 
-Una columna con márgenes de 24 puntos y áreas seguras. Inicio coloca el total, el presupuesto y las posiciones en ese orden. Corte conserva los siete campos y añade el presupuesto debajo. Historial muestra filas expandibles. Se mantienen dos pestañas principales y la hoja de Corte.
+Una columna con márgenes de 24 puntos y áreas seguras. Inicio muestra el total estimado y abre Presupuesto. Historial muestra filas expandibles con acceso a Detalle del corte. Corte conserva los siete campos y añade el presupuesto debajo. Se mantienen dos pestañas principales, dos pantallas completas de detalle y las hojas de Corte y Gastos.
 
 ## Elevation & Depth
 
-Superficies planas y separadores finos. La hoja de formulario y la ayuda usan la presentación nativa de iOS. Sin sombras decorativas.
+Superficies planas y separadores finos. Corte, Gastos y las dos ayudas se presentan como modales nativos de iOS. Presupuesto y Detalle del corte usan navegación completa. Sin sombras decorativas.
 
 ## Shapes
 
@@ -65,6 +65,7 @@ Campos, botones y notas usan radio de 14 puntos. Los botones de icono tienen un 
 - **Gastos:** hoja nativa con lista y formulario de monto, categoría y descripción opcional. El historial permite corregir o eliminar gastos dentro del periodo original.
 - **Acciones:** azul para confirmar; borde fino para acciones secundarias; confirmación nativa para descartar o eliminar.
 - **Estados:** guardado bloquea edición; salir con cambios pide confirmación; historial vacío, carga y error de almacenamiento tienen mensajes claros.
+- **Ayuda:** la ayuda de cálculo explica el patrimonio; la ayuda del presupuesto detalla gasto, restante y proyección.
 - **Movimiento:** las barras se ajustan después de guardar un corte, respetando Reducir movimiento.
 - **Ilustración:** agenda geométrica local en blanco, gris y azul; sin saldos ficticios.
 
