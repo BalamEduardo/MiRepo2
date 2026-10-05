@@ -1,5 +1,5 @@
-import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Alert, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AppButton from '../components/AppButton';
 import BudgetSummary from '../components/BudgetSummary';
@@ -7,16 +7,32 @@ import HoldingsGroup from '../components/HoldingsGroup';
 import { useSnapshots } from '../context/SnapshotContext';
 import { formatLongDate, formatMoney, precedingSnapshot, totalCentsFor } from '../data/amounts';
 import { HOLDING_GROUPS } from '../data/holdings';
+import { snapshotShareText } from '../data/shareSnapshot';
 import { palette, spacing } from '../theme';
 
 export default function SnapshotDetailScreen({ navigation, route }) {
   const { snapshots } = useSnapshots();
+  const [isSharing, setIsSharing] = useState(false);
+  const shareLock = useRef(false);
   const snapshot = snapshots.find((item) => item.id === route.params?.snapshotId);
   const previous = snapshot ? precedingSnapshot(snapshots, snapshot.id) : null;
   if (!snapshot) {
     return <SafeAreaView style={styles.safe}><Text style={styles.title}>No encontramos este corte.</Text></SafeAreaView>;
   }
   const total = totalCentsFor(snapshot.values);
+  const shareCut = async () => {
+    if (shareLock.current) return;
+    shareLock.current = true;
+    setIsSharing(true);
+    try {
+      await Share.share({ title: 'Corte semanal · DineroMio', message: snapshotShareText(snapshot) });
+    } catch {
+      Alert.alert('No se pudo compartir', 'El corte sigue guardado. Intenta compartirlo otra vez.');
+    } finally {
+      shareLock.current = false;
+      setIsSharing(false);
+    }
+  };
   return (
     <SafeAreaView style={styles.safe} edges={['bottom']}>
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
@@ -26,6 +42,8 @@ export default function SnapshotDetailScreen({ navigation, route }) {
         {HOLDING_GROUPS.map((group) => <HoldingsGroup key={group} group={group} values={snapshot.values} totalCents={total} palette={palette} />)}
         <BudgetSummary snapshot={snapshot} previous={previous} palette={palette} showCategories historical expandedInitially />
         <View style={styles.actions}>
+          <AppButton title={isSharing ? 'Abriendo menú…' : 'Compartir corte'} icon="share" variant="secondary"
+            palette={palette} disabled={isSharing} onPress={shareCut} />
           <AppButton title="Editar corte" icon="edit" variant="secondary" palette={palette}
             onPress={() => navigation.navigate('Corte', { snapshotId: snapshot.id, mode: 'edit' })} />
           <AppButton title="Ver gastos" icon="history" palette={palette}

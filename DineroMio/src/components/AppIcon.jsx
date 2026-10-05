@@ -12,6 +12,7 @@ const SYMBOLS = {
   globe: { ios: 'globe.americas.fill', android: 'public', web: 'public' },
   bitcoin: { ios: 'bitcoinsign.circle', android: 'currency_bitcoin', web: 'currency_bitcoin' },
   plus: { ios: 'plus', android: 'add', web: 'add' },
+  share: { ios: 'square.and.arrow.up', android: 'share', web: 'share' },
   edit: { ios: 'pencil', android: 'edit', web: 'edit' },
   delete: { ios: 'trash', android: 'delete', web: 'delete' },
   close: { ios: 'xmark', android: 'close', web: 'close' },

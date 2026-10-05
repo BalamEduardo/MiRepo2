@@ -17,6 +17,8 @@ Abre Expo Go en el iPhone y escanea el código QR. Se requiere estar conectado a
 
 ## Datos
 
+En **Historial → Abrir detalle del corte → Compartir corte** puedes compartir un resumen de texto mediante el menú del iPhone. Incluye fecha, siete saldos, presupuesto, reparto y gastos, junto con las estimaciones del periodo. Compartir o cancelar conserva el registro original; no se genera un archivo ni se comparte todo el historial.
+
 Los cortes se guardan localmente en el espacio de la app mediante AsyncStorage. No hay cuentas, backend, cotizaciones automáticas ni sincronización propia. La app inicia con un historial vacío; el primer corte se captura en el iPhone.
 
 ## Saldos incluidos
