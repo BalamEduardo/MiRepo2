@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Ciclo de vida</string>
+    <string name="titulo">Ciclo de vida de Activity</string>
+    <string name="instruccion">Escribe un dato y presiona el botón para mostrarlo.</string>
+    <string name="indicacion_edittext">Escribe aquí</string>
+    <string name="boton_mostrar">Mostrar dato</string>
+    <string name="etiqueta_resultado">Dato mostrado</string>
+    <string name="resultado_vacio">Todavía no hay un dato.</string>
+    <string name="mensaje_vacio">Escribe algo primero.</string>
+    <string name="mensaje_resultado">Capturaste: %1$s</string>
+    <string name="etiqueta_evento">Último método ejecutado</string>
+    <string name="evento_inicial">Esperando el ciclo de vida...</string>
+    <string name="ultimo_evento">Se ejecutó: %1$s</string>
+</resources>
