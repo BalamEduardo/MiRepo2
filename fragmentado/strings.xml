@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Ejemplo de Fragmentos</string>
+    <string name="titulo_principal">Ejemplo de FragmentManager</string>
+    <string name="boton_fragmento_uno">Fragmento 1</string>
+    <string name="boton_fragmento_dos">Fragmento 2</string>
+    <string name="boton_fragmento_tres">Fragmento 3</string>
+    <string name="titulo_fragmento_uno">Fragmento 1</string>
+    <string name="descripcion_fragmento_uno">Contenido mostrado desde el primer fragmento.</string>
+    <string name="titulo_fragmento_dos">Fragmento 2</string>
+    <string name="descripcion_fragmento_dos">Contenido mostrado desde el segundo fragmento.</string>
+    <string name="titulo_fragmento_tres">Fragmento 3</string>
+    <string name="descripcion_fragmento_tres">Contenido mostrado desde el tercer fragmento.</string>
+</resources>
