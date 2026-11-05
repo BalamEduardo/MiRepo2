@@ -1,0 +1,4 @@
+project_id = "FakeWhatsApp"
+
+[functions.password-recovery]
+verify_jwt = false

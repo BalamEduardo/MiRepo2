@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="auth_canvas">#F5F8F5</color>
+    <color name="auth_surface">#FFFFFF</color>
+    <color name="auth_ink">#13291F</color>
+    <color name="auth_muted">#44574D</color>
+    <color name="auth_accent">#146447</color>
+    <color name="auth_ripple">#333C8E70</color>
+    <color name="auth_border">#667A70</color>
+    <color name="auth_disabled">#495E53</color>
+    <color name="auth_error">#9B241F</color>
+    <dimen name="auth_gutter">24dp</dimen>
+    <dimen name="auth_space">8dp</dimen>
+    <dimen name="auth_section">16dp</dimen>
+    <dimen name="auth_control">52dp</dimen>
+    <dimen name="auth_radius">14dp</dimen>
+
+    <style name="AuthTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:colorAccent">@color/auth_accent</item>
+        <item name="android:windowBackground">@color/auth_canvas</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/auth_ink</item>
+    </style>
+    <style name="AuthBody">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/auth_section</item>
+        <item name="android:textColor">@color/auth_muted</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="AuthBrand" parent="AuthBody">
+        <item name="android:textColor">@color/auth_accent</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0.12</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="AuthTitle" parent="AuthBody">
+        <item name="android:textColor">@color/auth_ink</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">@dimen/auth_space</item>
+    </style>
+    <style name="AuthField">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/auth_section</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="AuthLabel" parent="AuthBody">
+        <item name="android:textColor">@color/auth_ink</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">@dimen/auth_space</item>
+    </style>
+    <style name="AuthInput">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/auth_control</item>
+        <item name="android:padding">@dimen/auth_section</item>
+        <item name="android:background">@drawable/auth_input</item>
+        <item name="android:textColor">@color/auth_ink</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+    <style name="AuthSecondary">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/auth_control</item>
+        <item name="android:layout_marginTop">@dimen/auth_space</item>
+        <item name="android:padding">@dimen/auth_space</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/auth_accent</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+    <style name="AuthPrimary" parent="AuthSecondary">
+        <item name="android:background">@drawable/auth_button</item>
+        <item name="android:textColor">@color/auth_surface</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

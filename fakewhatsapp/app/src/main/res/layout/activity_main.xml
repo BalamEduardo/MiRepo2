@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/auth_canvas"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/auth_gutter">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView style="@style/AuthBrand" android:text="@string/auth_brand" />
+            <TextView android:id="@+id/title" style="@style/AuthTitle" />
+            <TextView android:id="@+id/description" style="@style/AuthBody" android:textIsSelectable="true" />
+
+            <LinearLayout
+                android:id="@+id/email_row"
+                style="@style/AuthField">
+                <TextView style="@style/AuthLabel" android:labelFor="@+id/email" android:text="@string/auth_email" />
+                <EditText android:id="@id/email" style="@style/AuthInput" android:inputType="textEmailAddress"
+                    android:saveEnabled="false" android:autofillHints="emailAddress" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/password_row"
+                style="@style/AuthField">
+                <TextView style="@style/AuthLabel" android:labelFor="@+id/password" android:text="@string/auth_password" />
+                <EditText android:id="@id/password" style="@style/AuthInput" android:inputType="textPassword"
+                    android:saveEnabled="false" android:autofillHints="password" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/code_row"
+                style="@style/AuthField">
+                <TextView android:id="@+id/code_label" style="@style/AuthLabel" android:labelFor="@+id/code" android:text="@string/auth_code" />
+                <EditText android:id="@id/code" style="@style/AuthInput" android:inputType="number"
+                    android:saveEnabled="false" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/confirmation_row"
+                style="@style/AuthField">
+                <TextView style="@style/AuthLabel" android:labelFor="@+id/confirmation" android:text="@string/auth_confirmation" />
+                <EditText android:id="@id/confirmation" style="@style/AuthInput" android:inputType="textPassword"
+                    android:saveEnabled="false" android:autofillHints="newPassword" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/status"
+                style="@style/AuthBody"
+                android:accessibilityLiveRegion="polite" />
+
+            <Button android:id="@+id/primary" style="@style/AuthPrimary" />
+            <Button android:id="@+id/secondary" style="@style/AuthSecondary" />
+            <Button android:id="@+id/tertiary" style="@style/AuthSecondary" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
