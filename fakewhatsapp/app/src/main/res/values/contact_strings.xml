@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <string name="contacts_title">Contactos</string>
+
+    <string name="contacts_caption">Busca a alguien para elegir un destinatario.</string>
+
+    <string name="contacts_profile">Mi perfil</string>
+
+    <string name="contacts_search">Buscar por nombre</string>
+
+    <string name="contacts_directory">Directorio</string>
+
+    <string name="contacts_empty">Todavía no hay otros perfiles registrados.</string>
+
+    <string name="contacts_no_matches">No encontramos contactos con ese nombre.</string>
+
+    <string name="contacts_load">Cargar más</string>
+
+    <string name="contacts_retry">Reintentar</string>
+
+    <string name="contacts_loading">Cargando contactos…</string>
+
+    <string name="contacts_selected">Destinatario: %1$s</string>
+
+    <string name="contacts_clear">Quitar</string>
+
+    <string name="contacts_profile_title">Mi perfil</string>
+
+    <string name="contacts_name">Nombre visible</string>
+
+    <string name="contacts_name_error">Escribe un nombre de hasta 80 caracteres.</string>
+
+    <string name="contacts_photo">Elegir foto</string>
+
+    <string name="contacts_save">Guardar perfil</string>
+
+    <string name="contacts_back">Volver</string>
+
+    <string name="contacts_saved">Perfil guardado.</string>
+
+    <string name="contacts_profile_caption">Tu nombre y foto aparecen en el directorio de FakeWhatsApp.</string>
+
+    <string name="contacts_error">No pudimos conectar. Inténtalo de nuevo.</string>
+
+    <string name="contacts_photo_error">No se pudo leer esa foto. Elige otra imagen.</string>
+
+    <string name="contacts_busy">Guardando perfil…</string>
+
+    <string name="contacts_profile_loading">Cargando perfil…</string>
+
+    <string name="contacts_expired">Inicia sesión de nuevo para consultar tus contactos.</string>
+
+    <string name="contacts_choose">Elegir a %1$s</string>
+
+    <string name="contacts_current">%1$s, destinatario seleccionado</string>
+
+    <string name="chats_title">Chats</string>
+
+    <string name="chats_new">Nuevo chat</string>
+
+    <string name="chats_empty">Aún no tienes chats. Elige un contacto para iniciar uno.</string>
+
+    <string name="chats_loading">Cargando chats…</string>
+
+    <string name="chats_open">Abrir chat</string>
+
+    <string name="chats_opening">Abriendo chat…</string>
+
+    <string name="chats_no_messages">Sin mensajes todavía</string>
+
+    <string name="chats_last_message">Último mensaje</string>
+
+    <string name="chats_sender_you">Tú</string>
+
+    <string name="chats_preview">%1$s: %2$s</string>
+
+    <string name="chats_profile_required">Guarda tu nombre en Mi perfil para iniciar un chat.</string>
+
+    <string name="chats_recipient_unavailable">Este contacto ya no está disponible.</string>
+
+    <string name="contacts_saved_only">Mis contactos</string>
+
+    <string name="contacts_everyone">Todos los usuarios</string>
+
+    <string name="contacts_add">Guardar contacto</string>
+
+    <string name="contacts_added">Contacto guardado.</string>
+
+    <string name="contacts_saved_empty">Todavía no has guardado contactos. Busca a alguien en Todos los usuarios.</string>
+
+    <string name="contacts_add_profile_required">Guarda tu nombre en Mi perfil para añadir contactos.</string>
+
+    <string name="chat_reload">Actualizar</string>
+
+    <string name="chat_older">Ver mensajes anteriores</string>
+
+    <string name="chat_input">Escribe un mensaje</string>
+
+    <string name="chat_send">Enviar</string>
+
+    <string name="chat_sending">Enviando mensaje…</string>
+
+    <string name="chat_loading_history">Cargando historial…</string>
+
+    <string name="chat_send_error">No se confirmó el envío. Puedes volver a intentarlo.</string>
+
+    <string name="chat_state_sent">Enviado ✓</string>
+
+    <string name="chat_state_received">Recibido ✓✓</string>
+
+    <string name="chat_state_read">Leído ✓✓</string>
+
+    <string name="chat_status_online">En línea</string>
+
+    <string name="chat_status_typing">Escribiendo…</string>
+
+    <string name="chat_status_offline">Sin conexión reciente</string>
+
+    <string name="chat_status_last_seen">Últ. vez %1$s</string>
+
+    <string name="chat_last_seen_today">hoy a las %1$s</string>
+
+    <string name="chat_last_seen_yesterday">ayer a las %1$s</string>
+
+    <string name="chat_last_seen_date">%1$s</string>
+
+    <string name="chat_sent_accessibility">Enviado por ti. %1$s</string>
+
+    <string name="chat_received_accessibility">Recibido. %1$s</string>
+
+    <string name="contacts_create">Crear contacto</string>
+
+    <string name="contacts_create_open">Crear y abrir chat</string>
+
+    <string name="contacts_practice_hint">Elige un nombre para un contacto de prueba. Los mensajes se guardan en tu cuenta.</string>
+
+    <string name="contacts_practice_label">Contacto de prueba</string>
+
+    <string name="contacts_practice_name">%1$s · Prueba</string>
+
+    <string name="group_create">Crear grupo</string>
+
+    <string name="group_name">Nombre del grupo</string>
+
+    <string name="group_choose">Elige los participantes</string>
+
+    <string name="chat_attach">Enviar imagen</string>
+
+    <string name="chat_image">Imagen del mensaje</string>
+
+    <string name="chat_search">Buscar mensajes</string>
+
+    <string name="chat_delete">Eliminar mensaje</string>
+
+    <string name="chat_delete_confirm">¿Eliminar este mensaje para todos los participantes?</string>
+
+    <string name="chat_search_hint">Texto del mensaje</string>
+
+    <string name="chat_search_empty">No hay mensajes que coincidan.</string>
+
+    <string name="chat_group">Conversación grupal</string>
+
+    <string name="chat_image_failed">No se pudo cargar la imagen. Pulsa para reintentar.</string>
+
+    <string name="chat_members">Miembros</string>
+    <string name="chat_read_group">Leído por un participante</string>
+</resources>

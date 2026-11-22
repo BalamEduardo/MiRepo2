@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contacts_root" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout android:id="@+id/chats_panel" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:orientation="vertical"
+        android:paddingHorizontal="@dimen/auth_gutter" android:paddingTop="@dimen/auth_section">
+        <TextView style="@style/AuthTitle" android:text="@string/chats_title" />
+        <Button android:id="@+id/chats_new" style="@style/AuthPrimary" android:text="@string/chats_new" />
+        <Button android:id="@+id/chats_group" style="@style/AuthSecondary" android:text="@string/group_create" />
+        <TextView android:id="@+id/chats_status" style="@style/AuthBody"
+            android:layout_marginTop="@dimen/auth_section" android:accessibilityLiveRegion="polite" />
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/chat_list"
+            android:layout_width="match_parent" android:layout_height="0dp"
+            android:layout_weight="1" android:layout_marginTop="@dimen/auth_space" />
+        <Button android:id="@+id/chats_more" style="@style/AuthSecondary"
+            android:text="@string/contacts_load" android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/chat_detail" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:orientation="vertical"
+        android:paddingStart="@dimen/auth_section" android:paddingEnd="@dimen/auth_section"
+        android:paddingBottom="@dimen/auth_space" android:visibility="gone">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="center_vertical" android:orientation="horizontal">
+            <Button android:id="@+id/chat_back" style="@style/AuthSecondary"
+                android:layout_width="wrap_content" android:text="@string/contacts_back" />
+            <LinearLayout android:layout_width="0dp" android:layout_weight="1"
+                android:layout_height="wrap_content" android:gravity="center" android:orientation="vertical">
+                <TextView android:id="@+id/chat_title" style="@style/AuthLabel"
+                    android:layout_width="match_parent" android:layout_marginBottom="0dp"
+                    android:gravity="center" android:textSize="20sp" android:maxLines="2"
+                    android:ellipsize="end" />
+                <TextView android:id="@+id/chat_presence" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:gravity="center"
+                    android:textColor="@color/auth_muted" android:textSize="12sp"
+                    android:visibility="gone" android:accessibilityLiveRegion="polite" />
+            </LinearLayout>
+            <Button android:id="@+id/chat_reload" style="@style/AuthSecondary"
+                android:layout_width="wrap_content" android:text="@string/chat_reload" />
+        </LinearLayout>
+        <TextView android:id="@+id/chat_practice_label" style="@style/AuthBody"
+            android:gravity="center" android:text="@string/contacts_practice_label"
+            android:visibility="gone" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <Button android:id="@+id/chat_members" style="@style/AuthSecondary" android:layout_width="0dp" android:layout_weight="1" android:text="@string/chat_members" android:visibility="gone" />
+            <Button android:id="@+id/chat_attach" style="@style/AuthSecondary" android:layout_width="0dp" android:layout_weight="1" android:text="@string/chat_attach" />
+            <Button android:id="@+id/chat_search" style="@style/AuthSecondary" android:layout_width="0dp" android:layout_weight="1" android:text="@string/chat_search" />
+        </LinearLayout>
+        <Button android:id="@+id/chat_older" style="@style/AuthSecondary"
+            android:text="@string/chat_older" android:visibility="gone" />
+        <TextView android:id="@+id/chat_status" style="@style/AuthBody"
+            android:gravity="center" android:accessibilityLiveRegion="polite" />
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/chat_history"
+            android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+            android:paddingTop="@dimen/auth_space" android:paddingBottom="@dimen/auth_space"
+            android:clipToPadding="false" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="bottom" android:orientation="horizontal">
+            <EditText android:id="@+id/chat_input" style="@style/AuthInput"
+                android:layout_width="0dp" android:layout_weight="1" android:maxLines="4"
+                android:inputType="textCapSentences|textMultiLine" android:maxLength="4000"
+                android:importantForAutofill="no" android:saveEnabled="false"
+                android:hint="@string/chat_input" />
+            <Button android:id="@+id/chat_send" style="@style/AuthPrimary"
+                android:layout_width="wrap_content" android:layout_marginStart="@dimen/auth_space"
+                android:text="@string/chat_send" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout android:visibility="gone" android:id="@+id/directory_panel" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:orientation="vertical"
+        android:paddingHorizontal="@dimen/auth_gutter" android:paddingTop="@dimen/auth_section">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView style="@style/AuthTitle" android:layout_width="0dp"
+                android:layout_weight="1" android:text="@string/contacts_title" />
+            <Button android:id="@+id/edit_profile" style="@style/AuthSecondary"
+                android:layout_width="wrap_content" android:text="@string/contacts_profile" />
+        </LinearLayout>
+        <TextView style="@style/AuthBody" android:text="@string/contacts_caption" />
+        <Button android:id="@+id/create_practice_contact" style="@style/AuthPrimary"
+            android:text="@string/contacts_create" />
+        <TextView android:id="@+id/chat_creation_status" style="@style/AuthBody"
+            android:visibility="gone" android:accessibilityLiveRegion="polite" />
+        <EditText android:id="@+id/contact_query" style="@style/AuthInput"
+            android:inputType="text" android:imeOptions="actionSearch" android:maxLength="80"
+            android:singleLine="true" android:hint="@string/contacts_search"
+            android:importantForAutofill="no" />
+        <Button android:id="@+id/contacts_filter" style="@style/AuthSecondary"
+            android:text="@string/contacts_saved_only" />
+        <TextView android:id="@+id/directory_status" style="@style/AuthBody"
+            android:accessibilityLiveRegion="polite" />
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/contact_list"
+            android:layout_width="match_parent" android:layout_height="0dp"
+            android:layout_weight="1" android:clipToPadding="false" />
+        <Button android:id="@+id/directory_more" style="@style/AuthSecondary" android:text="@string/contacts_load" />
+        <LinearLayout android:id="@+id/recipient_panel" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:id="@+id/recipient_name" style="@style/AuthLabel"
+                android:layout_width="0dp" android:layout_weight="1" android:accessibilityLiveRegion="polite" />
+            <Button android:id="@+id/recipient_clear" style="@style/AuthSecondary"
+                android:layout_width="wrap_content" android:text="@string/contacts_clear" />
+        </LinearLayout>
+        <Button android:id="@+id/recipient_save" style="@style/AuthSecondary"
+            android:text="@string/contacts_add" android:visibility="gone" />
+        <Button android:id="@+id/recipient_open" style="@style/AuthPrimary"
+            android:text="@string/chats_open" android:visibility="gone" />
+    </LinearLayout>
+
+    <ScrollView android:id="@+id/profile_panel" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:visibility="gone" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="@dimen/auth_gutter">
+            <TextView style="@style/AuthTitle" android:text="@string/contacts_profile_title" />
+            <TextView style="@style/AuthBody" android:text="@string/contacts_profile_caption" />
+            <FrameLayout android:layout_width="88dp" android:layout_height="88dp"
+                android:layout_gravity="center_horizontal" android:background="@drawable/contact_avatar"
+                android:clipToOutline="true" android:importantForAccessibility="noHideDescendants">
+                <TextView android:id="@+id/profile_initial" android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:gravity="center"
+                    android:textSize="30sp" android:textStyle="bold" android:textColor="@color/auth_accent" />
+                <ImageView android:id="@+id/profile_avatar" android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:scaleType="centerCrop" />
+            </FrameLayout>
+            <Button android:id="@+id/profile_photo" style="@style/AuthSecondary" android:text="@string/contacts_photo" />
+            <TextView style="@style/AuthLabel" android:layout_marginTop="@dimen/auth_section"
+                android:labelFor="@+id/profile_name" android:text="@string/contacts_name" />
+            <EditText android:id="@id/profile_name" style="@style/AuthInput"
+                android:inputType="textPersonName|textCapWords" android:maxLength="80"
+                android:singleLine="true" android:autofillHints="name" />
+            <TextView android:id="@+id/profile_status" style="@style/AuthBody"
+                android:layout_marginTop="@dimen/auth_section" android:accessibilityLiveRegion="polite" />
+            <Button android:id="@+id/profile_save" style="@style/AuthPrimary" android:text="@string/contacts_save" />
+            <Button android:id="@+id/profile_back" style="@style/AuthSecondary" android:text="@string/contacts_back" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

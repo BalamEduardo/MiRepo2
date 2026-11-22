@@ -38,7 +38,9 @@ public final class MainActivity extends Activity {
     private Screen screen;
     private boolean busy;
     private boolean foreground;
+    private boolean openedContacts;
     private Uri callback;
+    private String notificationChat;
     private TextView title, description, status;
     private EditText email, password, code, confirmation;
     private Button primary, secondary, tertiary;
@@ -48,6 +50,7 @@ public final class MainActivity extends Activity {
         super.onCreate(state);
         setContentView(R.layout.activity_main);
         store = new SessionStore(getApplicationContext());
+        PushService.createChannel(this);
         View root = findViewById(R.id.main);
         root.setOnApplyWindowInsetsListener((view, insets) -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -77,6 +80,7 @@ public final class MainActivity extends Activity {
                     android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT, this::navigateBack);
         }
         show(Screen.RESTORE);
+        captureNotification(getIntent());
         if (!acceptCallback(getIntent())) {
             restore();
         }
@@ -85,7 +89,29 @@ public final class MainActivity extends Activity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        acceptCallback(intent);
+        if (!acceptCallback(intent)) {
+            captureNotification(intent);
+            openNotificationChat();
+        }
+    }
+
+    private void captureNotification(Intent intent) {
+        String id = intent.getStringExtra("conversacion_id");
+        intent.removeExtra("conversacion_id");
+        if (id == null) return;
+        try {
+            notificationChat = java.util.UUID.fromString(id).toString();
+        } catch (IllegalArgumentException ignored) {
+            notificationChat = null;
+        }
+    }
+
+    private void openNotificationChat() {
+        if (notificationChat == null || session == null || screen != Screen.ACCOUNT) return;
+        String id = notificationChat;
+        notificationChat = null;
+        openedContacts = true;
+        startActivity(new Intent(this, ContactsActivity.class).putExtra("conversacion_id", id));
     }
 
     private boolean acceptCallback(Intent intent) {
@@ -136,6 +162,10 @@ public final class MainActivity extends Activity {
     protected void onStart() {
         super.onStart();
         foreground = true;
+        if (openedContacts) {
+            openedContacts = false;
+            restore();
+        }
         scheduleRenewal();
     }
 
@@ -187,6 +217,15 @@ public final class MainActivity extends Activity {
 
     private void show(Screen next) {
         screen = next;
+        if (next == Screen.ACCOUNT && session != null) {
+            PushRegistration.sync(this);
+            android.content.SharedPreferences prefs = getSharedPreferences("push_installation", MODE_PRIVATE);
+            if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                    != android.content.pm.PackageManager.PERMISSION_GRANTED && !prefs.getBoolean("prompted", false)) {
+                prefs.edit().putBoolean("prompted", true).apply();
+                requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 24);
+            }
+        }
         password.setText("");
         confirmation.setText("");
         code.setText("");
@@ -249,16 +288,21 @@ public final class MainActivity extends Activity {
         });
         button(tertiary, switch (next) {
             case LOGIN -> R.string.auth_forgot;
+            case ACCOUNT -> R.string.chats_title;
             case CONFIRM -> R.string.auth_back;
             default -> 0;
         }, () -> {
             if (screen == Screen.LOGIN) {
                 show(Screen.RECOVER);
+            } else if (screen == Screen.ACCOUNT) {
+                openedContacts = true;
+                startActivity(new Intent(this, ContactsActivity.class));
             } else {
                 backToLogin();
             }
         });
         message(0, false);
+        if (next == Screen.ACCOUNT) openNotificationChat();
     }
 
     private void button(Button button, int label, Runnable action) {
@@ -394,6 +438,7 @@ public final class MainActivity extends Activity {
             if (saved != null) {
                 try {
                     AuthClient.Session active = saved.needsRefresh() ? AUTH.refresh(saved) : saved;
+                    PushRegistration.remove(getApplicationContext(), store, active);
                     AUTH.signOut(active);
                     revoked = true;
                 } catch (AuthClient.Rejected failure) {

@@ -1,0 +1,7 @@
+project_id = "FakeWhatsApp"
+
+[functions.password-recovery]
+verify_jwt = false
+
+[functions.notificar-mensaje]
+verify_jwt = false

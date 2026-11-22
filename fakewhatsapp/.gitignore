@@ -1,0 +1,17 @@
+.gradle/
+.idea/
+build/
+*.iml
+/local.properties
+/supabase.properties
+
+.env*
+secrets/
+*.jks
+*.keystore
+**/*firebase-adminsdk*.json
+**/*service-account*.json
+supabase/functions/.env*
+
+/app/google-services.json
+/supabase/.temp/
