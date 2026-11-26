@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "FaceRecognition",
+    "slug": "facerecognition",
+    "version": "1.1.0",
+    "orientation": "portrait",
+    "ios": {
+      "bundleIdentifier": "com.eduardo2612.facerecognition",
+      "buildNumber": "2",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Permitir que FaceRecognition use la cámara para detectar rostros en vivo y tomar fotos."
+      }
+    },
+    "android": {
+      "package": "com.eduardo2612.facerecognition",
+      "versionCode": 2,
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.READ_MEDIA_VISUAL_USER_SELECTED"
+      ]
+    },
+    "plugins": [
+      "./plugins/withShortAndroidPaths.cjs",
+      "expo-dev-client",
+      [
+        "expo-media-library",
+        {
+          "photosPermission": false,
+          "savePhotosPermission": "Permitir que FaceRecognition guarde fotos en tu galería.",
+          "isAccessMediaLocationEnabled": false,
+          "granularPermissions": []
+        }
+      ],
+      "expo-asset"
+    ]
+  }
+}

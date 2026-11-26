@@ -1,0 +1,38 @@
+diff --git a/node_modules/react-native-vision-camera-face-detector/android/src/main/java/com/margelo/nitro/camera/facedetector/HybridFaceDetectorOutput.kt b/node_modules/react-native-vision-camera-face-detector/android/src/main/java/com/margelo/nitro/camera/facedetector/HybridFaceDetectorOutput.kt
+index c94014f..a213348 100644
+--- a/node_modules/react-native-vision-camera-face-detector/android/src/main/java/com/margelo/nitro/camera/facedetector/HybridFaceDetectorOutput.kt
++++ b/node_modules/react-native-vision-camera-face-detector/android/src/main/java/com/margelo/nitro/camera/facedetector/HybridFaceDetectorOutput.kt
+@@ -48,6 +48,7 @@ class HybridFaceDetectorOutput(
+     options.toMLFaceDetectorOptions()
+   )
+   private var isBusy = AtomicBoolean(false)
++  private val disposed = AtomicBoolean(false)
+   private val faceDetectorTask = AtomicReference<Task<List<Face>>?>()
+   private val executor = Executors.newSingleThreadExecutor()
+   private var imageAnalysis: ImageAnalysis? = null
+@@ -89,6 +90,8 @@ class HybridFaceDetectorOutput(
+   }
+ 
+   override fun dispose() {
++    if (!disposed.compareAndSet(false, true)) return
++    imageAnalysis?.clearAnalyzer()
+     faceDetectorTask.get()?.let {
+       try {
+         Tasks.await(it)
+@@ -96,13 +99,14 @@ class HybridFaceDetectorOutput(
+     }
+ 
+     faceDetector.close()
+-    executor.close()
++    // ExecutorService.close() is only available from Android API 36.
++    executor.shutdown()
+     super.dispose()
+   }
+ 
+   @OptIn(ExperimentalGetImage::class)
+   override fun analyze(imageProxy: ImageProxy) {
+-    if (!isBusy.compareAndSet(false, true)) {
++    if (disposed.get() || !isBusy.compareAndSet(false, true)) {
+       // pipeline is busy. close image & return
+       imageProxy.close()
+       return

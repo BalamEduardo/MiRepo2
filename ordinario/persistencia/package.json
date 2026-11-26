@@ -1,0 +1,29 @@
+{
+  "name": "persistencia",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@supabase/supabase-js": "2.118.0",
+    "expo": "~58.0.19",
+    "expo-sqlite": "~58.0.14",
+    "expo-status-bar": "~58.0.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.0",
+    "react-native-url-polyfill": "^4.0.0",
+    "react-native-web": "^0.21.4"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "test": "node --test tests/*.test.js"
+  },
+  "private": true,
+  "overrides": {
+    "@expo/cli": {
+      "zod": "4.6.7"
+    }
+  }
+}
